@@ -1,25 +1,68 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Table from "react-bootstrap/Table";
 import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.css";
 import "../App.css";
-import config from "../data/config.json";
-// import shipmentInfoFromFile from "../data/Shipments.json"
+// import config from "../data/config.json";
+import shipmentInfoFromFile from "../data/Shipments.json";
+import { Link, useParams } from "react-router-dom";
+// import BSForms from "../components/BSForms";
+import Popups from "../components/Popups";
 
 function Homepage() {
-  const [shipments, setShipments] = useState([]);
-  // const [dbShipments, setDbShipments] = useState([]);
-  // const searchedRef = useRef();
+  const [shipments, setShipments] = useState(shipmentInfoFromFile);
+  const [buttonPopup, setButtonPopup] = useState(false);
+  const [selectedShipment, setSelectedShipment] = useState(null);
+  
 
-  // const [sorted, setSorted] = useState(false);
+  // const orderNoRef = useRef();
+  // const dateRef = useRef();
+  // const customerRef = useRef();
+  // const trackingNoRef = useRef();
+  // const statusRef = useRef();
+  // const consigneeRef = useRef();
+  // const { shipmentOrderNo } = useParams();
+  // const found = shipments.find((shipment) => shipment.date === shipmentOrderNo);
 
-  useEffect(() => {
-    fetch(config.joogidDbUrl)
-      .then((res) => res.json())
-      .then((json) => setShipments(json || []));
-  }, []);
+  const handleEditClick = (shipment, shipmentOrderNo) => {
+    setButtonPopup(true);
+    setSelectedShipment(shipment);
+  };
+
+  // const edit = () => {
+  //   shipmentInfoFromFile[shipmentOrderNo] = {
+  //     orderNo: orderNoRef.current.value,
+  //     date: dateRef.current.value,
+  //     customer: customerRef.current.value,
+  //     trackingNo: trackingNoRef.current.value,
+  //     status: statusRef.current.value,
+  //     consignee: consigneeRef.current.value,
+  //   };
+  // };
+  // config.shipmentDataURL
+  // useEffect(() => {
+  //   fetch(shipmentInfoFromFile)
+  //     .then((res) => res.json())
+  //     .then((json) => {
+  //       console.log(json);
+  //       setShipments(json || []);
+  //     });
+  // }, []);
+
+  const deleteShipment = (index) => {
+    shipments.splice(index, 1);
+    setShipments(shipments.slice());
+  };
 
   return (
     <div>
+      {/* <Popups
+        trigger={buttonPopup}
+        setTrigger={setButtonPopup}
+        buttonPopup={buttonPopup}
+        setButtonPopup={setButtonPopup}
+        selectedShipment={selectedShipment}
+      /> */}
       <div>
         <Table>
           <thead>
@@ -60,20 +103,28 @@ function Homepage() {
             </tr>
           </thead>
           <tbody>
-            {shipments.map((shipment) => (
-              <tr>
-                <td>{shipment.name}</td>
-                <td>{shipment.category}</td>
-                <td>{shipment.id}</td>
+            {shipments.map((shipment, index) => (
+              <tr key={index}>
+                <td>{shipment.orderNo}</td>
+                <td>{shipment.date}</td>
+                <td>{shipment.customer}</td>
                 <td>{shipment.trackingNo}</td>
                 <td>{shipment.status}</td>
                 <td>{shipment.consignee}</td>
                 <td>
                   <span>
-                    <img className="image" src="/edit-button.png" alt="Edit" />
+                    <Link to={"./edit/" + index}>
+                      <img
+                        onClick={() => handleEditClick(shipment, true)}
+                        className="image"
+                        src="/edit-button.png"
+                        alt="Edit"
+                      />
+                    </Link>
                   </span>
                   <span>
                     <img
+                      onClick={() => deleteShipment(index)}
                       className="image"
                       src="/delete-button.png"
                       alt="Edit"
