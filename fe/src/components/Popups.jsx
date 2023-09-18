@@ -37,6 +37,7 @@ function Popups(props) {
   };
   return props.trigger ? (
     <div className="popup">
+      <div className="blue-box"></div>
       <div className="popup-inner">
         <p>SHIPMENT DETAILS</p>
         <Form>
