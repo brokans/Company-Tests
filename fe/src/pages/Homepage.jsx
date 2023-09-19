@@ -1,24 +1,64 @@
 import Table from "react-bootstrap/Table";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "../App.css";
-import shipmentInfoFromFile from "../data/Shipments.json";
+// import shipmentInfoFromFile from "../data/Shipments.json";
 import { Link } from "react-router-dom";
+import config from "../data/config.json";
+import { Spinner } from "react-bootstrap";
 
 function Homepage() {
-  const [shipments, setShipments] = useState(shipmentInfoFromFile);
+  const [shipments, setShipments] = useState([]);
   const [buttonPopup, setButtonPopup] = useState(false);
-  const [selectedShipment, setSelectedShipment] = useState(null);
+  const [selectedShipment, setSelectedShipment] = useState([]);
+  const [dbShipment, setDbShipment] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(config.joogidDbUrl)
+      .then((res) => res.json())
+      .then((json) => {
+        setShipments(json || []);
+        setDbShipment(json || []);
+        setLoading(false);
+      });
+  }, []);
 
   const handleEditClick = (shipment, shipmentOrderNo) => {
     setButtonPopup(true);
-    setSelectedShipment(shipment);
+    setSelectedShipment(shipment.id);
   };
 
-  const deleteShipment = (index) => {
-    shipments.splice(index, 1);
-    setShipments(shipments.slice());
-  };
+  // function deleteShipment(shipmentOrderNo) {
+  //   const index = dbShipment.findIndex(shipment => shipment.id === shipmentOrderNo)
+  //   dbShipment.splice(index, 1);
+  //   fetch(
+  //     config.joogidDbUrl,
+  //     {
+  //       method: "PUT",
+  //       body: JSON.stringify(dbShipment)
+  //     })
+  // };
+  function deleteShipment(shipmentOrderNo) {
+    const index = dbShipment.findIndex(
+      (shipment) => shipment.id === shipmentOrderNo
+    );
+
+    if (index !== -1) {
+      dbShipment.splice(index, 1);
+
+      setShipments([...dbShipment]);
+
+      fetch(config.joogidDbUrl, {
+        method: "PUT",
+        body: JSON.stringify(dbShipment),
+      });
+    }
+  }
+
+  if (isLoading === true) {
+    return <Spinner />;
+  }
 
   return (
     <div>
@@ -62,17 +102,17 @@ function Homepage() {
             </tr>
           </thead>
           <tbody>
-            {shipments.map((shipment, index) => (
-              <tr key={index}>
-                <td>{shipment.orderNo}</td>
-                <td>{shipment.date}</td>
+            {shipments.map((shipment, orderNo) => (
+              <tr key={shipment.id}>
+                <td>{shipment.id}</td>
+                <td>{shipment.price}</td>
                 <td>{shipment.customer}</td>
                 <td>{shipment.trackingNo}</td>
                 <td>{shipment.status}</td>
                 <td>{shipment.consignee}</td>
                 <td>
                   <span>
-                    <Link to={"./edit/" + index}>
+                    <Link to={"./edit/" + shipment.id}>
                       <img
                         onClick={() => handleEditClick(shipment, true)}
                         className="image"
@@ -83,10 +123,11 @@ function Homepage() {
                   </span>
                   <span>
                     <img
-                      onClick={() => deleteShipment(index)}
+                      onClick={() => deleteShipment(shipment.id)}
                       className="image"
                       src="/delete-button.png"
-                      alt="Edit"
+                      alt="Delete"
+                      type="submit"
                     />
                   </span>
                 </td>

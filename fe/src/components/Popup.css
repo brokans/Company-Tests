@@ -1,6 +1,6 @@
 .popup {
     position: fixed;
-    top: 0;
+    top: 0px;
     left: 0;
     width: 100%;
     height: 100vh;
@@ -12,21 +12,45 @@
 }   
 
 .popup-inner {
-    position: relative;
-    padding: 32px;
+    position: fixed;
+    padding-top: 20px;
+    top: 30px;
     width: 100%;
     max-width: 90%;
     background-color: white;
-}
+    border-radius: 5px;
 
-.popup-inner .close-btn {
-    position: absolute;
-    top: 16px;
-    right: 16px;
 }
 
 .blue-box {
-    color: rgb(9, 24, 228);
-    background-color: rgb(72, 12, 252);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    background-image: linear-gradient(to right, rgb(130, 204, 253) , rgb(5, 94, 227));
     
 }
+
+.details {
+    padding-top: 20px;
+    padding-left: 15px;
+    color: grey;
+}
+
+Form {
+    padding: 0px 32px 10px;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid lightgray;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.hr-bottom {
+    margin-bottom: 30px;
+}
+
