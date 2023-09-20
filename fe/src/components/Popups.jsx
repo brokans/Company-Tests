@@ -1,6 +1,4 @@
-// import { useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
 import { useEffect, useRef, useState } from "react";
 import "./Popup.css";
 // import shipmentInfoFromFile from "../data/Shipments.json";
@@ -15,7 +13,6 @@ import { Spinner } from "react-bootstrap";
 import "../components/Popup.css";
 import config from "../data/config.json";
 
-// Proovida siin seadistada edit nuppu või homepage'l, delete seal töötab
 function Popups(props) {
   const { shipmentOrderNo } = useParams();
   const orderNoRef = useRef();
@@ -38,7 +35,6 @@ function Popups(props) {
     fetch(config.joogidDbUrl)
       .then((res) => res.json())
       .then((json) => {
-        // const found = json.find(shipment => shipment.id === Number(shipmentOrderNo));
         setShipments(json.slice() || []);
         setLoading(false);
       });
@@ -46,7 +42,7 @@ function Popups(props) {
 
   function edit() {
     const index = shipments.findIndex(
-      shipment => shipment.id === Number(shipmentOrderNo)
+      (shipment) => shipment.id === Number(shipmentOrderNo)
     );
     shipments[index] = {
       id: orderNoRef.current.value,
@@ -62,39 +58,6 @@ function Popups(props) {
     });
     navigate("/");
   }
-
-  // function edit() {
-  //   const editedShipment = {
-  //     id: Number(shipmentOrderNo), // Assuming id is a number
-  //     name: dateRef.current.value,
-  //     price: customerRef.current.value,
-  //     description: trackingNoRef.current.value,
-  //     active: statusRef.current.value,
-  //     image: consigneeRef.current.value,
-  //   };
-  
-  //   // Make the PUT request to update the data on the server
-  //   fetch(config.joogidDbUrl, {
-  //     method: "PUT",
-  //     body: JSON.stringify(editedShipment),
-  //   })
-  //     .then((response) => {
-  //       if (response.ok) {
-  //         // Update the local state with the edited shipment
-  //         const updatedShipments = shipments.map((shipment) =>
-  //           shipment.id === editedShipment.id ? editedShipment : shipment
-  //         );
-  //         setShipments(updatedShipments);
-  //         navigate("/");
-  //       } else {
-  //         // Handle error if the request was not successful
-  //         console.error("Error updating shipment data");
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error updating shipment data:", error);
-  //     });
-  // }
 
   if (isLoading === true) {
     return <Spinner />;
@@ -113,7 +76,6 @@ function Popups(props) {
               <Form.Label htmlFor="inlineFormInput" visuallyHidden>
                 Name
               </Form.Label>
-              {shipmentOrderNo}
               <p>orderNo</p>
               <Form.Control
                 ref={orderNoRef}

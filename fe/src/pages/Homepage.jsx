@@ -1,5 +1,5 @@
 import Table from "react-bootstrap/Table";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "../App.css";
 // import shipmentInfoFromFile from "../data/Shipments.json";
@@ -29,16 +29,6 @@ function Homepage() {
     setSelectedShipment(shipment.id);
   };
 
-  // function deleteShipment(shipmentOrderNo) {
-  //   const index = dbShipment.findIndex(shipment => shipment.id === shipmentOrderNo)
-  //   dbShipment.splice(index, 1);
-  //   fetch(
-  //     config.joogidDbUrl,
-  //     {
-  //       method: "PUT",
-  //       body: JSON.stringify(dbShipment)
-  //     })
-  // };
   function deleteShipment(shipmentOrderNo) {
     const index = dbShipment.findIndex(
       (shipment) => shipment.id === shipmentOrderNo
@@ -70,27 +60,19 @@ function Homepage() {
               <th data-field="deliverdate">DELIVERDATE</th>
               <th data-field="customer">
                 CUSTOMER
-                <span>
-                  <img className="sort-image" src="/down-up.png" alt="" />
-                </span>
+                <span></span>
               </th>
               <th data-field="trackingNr">
                 TRACKINGNO
-                <span>
-                  <img className="sort-image" src="/down-up.png" alt="" />
-                </span>
+                <span></span>
               </th>
               <th data-field="status">
                 STATUS
-                <span>
-                  <img className="sort-image" src="/down-up.png" alt="" />
-                </span>
+                <span></span>
               </th>
               <th data-field="consignee">
                 CONSIGNEE
-                <span>
-                  <img className="sort-image" src="/down-up.png" alt="" />
-                </span>
+                <span></span>
               </th>
               <th
                 data-field="actions"
@@ -105,11 +87,11 @@ function Homepage() {
             {shipments.map((shipment, orderNo) => (
               <tr key={shipment.id}>
                 <td>{shipment.id}</td>
+                <td>{shipment.name}</td>
                 <td>{shipment.price}</td>
-                <td>{shipment.customer}</td>
-                <td>{shipment.trackingNo}</td>
-                <td>{shipment.status}</td>
-                <td>{shipment.consignee}</td>
+                <td>{shipment.description}</td>
+                <td>{shipment.active}</td>
+                <td>{shipment.image}</td>
                 <td>
                   <span>
                     <Link to={"./edit/" + shipment.id}>
