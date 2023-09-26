@@ -24,7 +24,7 @@ function Homepage() {
       });
   }, []);
 
-  const handleEditClick = (shipment, shipmentOrderNo) => {
+  const handleEditClick = (shipment) => {
     setButtonPopup(true);
     setSelectedShipment(shipment.id);
   };
@@ -96,7 +96,7 @@ function Homepage() {
                   <span>
                     <Link to={"./edit/" + shipment.id}>
                       <img
-                        onClick={() => handleEditClick(shipment, true)}
+                        onClick={() => handleEditClick(shipment)}
                         className="image"
                         src="/edit-button.png"
                         alt="Edit"

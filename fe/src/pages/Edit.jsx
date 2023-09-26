@@ -3,13 +3,16 @@ import Popups from "../components/Popups";
 import "../App.css";
 import "../components/Popup.css";
 
+
 function Edit(props) {
-  const [buttonPopup, setButtonPopup] = useState(false);
+  const [buttonPopup, setButtonPopup] = useState(true);
+
 
   useEffect(() => {
     setButtonPopup(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
 
   return (
     <div>

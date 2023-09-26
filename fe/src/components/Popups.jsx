@@ -45,7 +45,7 @@ function Popups(props) {
       (shipment) => shipment.id === Number(shipmentOrderNo)
     );
     shipments[index] = {
-      id: orderNoRef.current.value,
+      id: Number(orderNoRef.current.value),
       name: dateRef.current.value,
       price: customerRef.current.value,
       description: trackingNoRef.current.value,
@@ -55,8 +55,8 @@ function Popups(props) {
     fetch(config.joogidDbUrl, {
       method: "PUT",
       body: JSON.stringify(shipments),
-    });
-    navigate("/");
+      // peab navigetima then'ga muidu jõuab lehele enne kui on tabel uuenenud
+    }).then(() => navigate("/"));
   }
 
   if (isLoading === true) {
