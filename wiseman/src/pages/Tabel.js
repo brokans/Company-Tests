@@ -1,21 +1,31 @@
 import React, { useEffect, useState } from "react";
 import config from "../data/personel.json";
 import Table from "react-bootstrap/Table";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Spinner } from "react-bootstrap";
-
-
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronRight,
+  fa1,
+  fa2,
+  fa3,
+  fa4,
+} from "@fortawesome/free-solid-svg-icons";
 
 function Tabel() {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const objectsPerPage = 10;
+
+  const element = <FontAwesomeIcon icon={faChevronLeft} />;
 
   useEffect(() => {
     fetch(config.personelDataURL)
       .then((response) => response.json())
       .then((jsonData) => {
         setData(jsonData);
-        setLoading(false)
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching JSON:", error);
@@ -26,31 +36,39 @@ function Tabel() {
     return <Spinner />;
   }
 
-    if (isLoading === true) {
+  if (isLoading === true) {
     return <Spinner />;
   }
 
-
-
   const limit = data.limit;
 
-  
-  const list = data.list; 
+  const list = data.list;
 
-  if (list.length > 0) {
-    const firstItem = list[0];
-    const body = firstItem.body; 
-    const firstname = firstItem.firstname; 
-    const images = firstItem.images;
+  // if (list.length > 0) {
+  //   const firstItem = list[0];
+  //   const body = firstItem.body;
+  //   const firstname = firstItem.firstname;
+  //   const images = firstItem.images;
 
-    images.forEach((image) => {
-      const alt = image.alt; 
-      const large = image.large; 
-    });
-  }
+  //   images.forEach((image) => {
+  //     const alt = image.alt;
+  //     const large = image.large;
+  //   });
+  // }
 
   const firstTen = list.slice(0, 10);
+  const secondPage = list.slice(10, 20);
 
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  // Calculate the start and end indices for the current page
+  const startIndex = (currentPage - 1) * objectsPerPage;
+  const endIndex = startIndex + objectsPerPage;
+
+  // Slice the list to get the items for the current page
+  const currentItems = list.slice(startIndex, endIndex);
 
 
   return (
@@ -91,10 +109,44 @@ function Tabel() {
             </tbody>
           </Table>
           <div className="buttonWrapper">
-            <button>
-              <FontAwesomeIcon icon="fa-solid fa-chevron-up" rotation={270} style={{color: "#ffffff",}} />
-            </button>
-
+            <FontAwesomeIcon
+              className="my-fa-icon"
+              icon={faChevronLeft}
+              size="lg"
+              style={{ color: "#ffffff" }}
+              onClick={() => handlePageChange(currentPage - 1)}
+            />
+            <FontAwesomeIcon
+              className="my-fa-icon"
+              icon={fa1}
+              style={{ color: "#ffffff" }}
+              onClick={() => handlePageChange(2)}
+            />
+            <FontAwesomeIcon
+              className="my-fa-icon"
+              icon={fa2}
+              style={{ color: "#ffffff" }}
+              onClick={() => handlePageChange(3)}
+            />
+            <FontAwesomeIcon
+              className="my-fa-icon"
+              icon={fa3}
+              style={{ color: "#ffffff" }}
+              onClick={() => handlePageChange(3)}
+            />
+            <FontAwesomeIcon
+              className="my-fa-icon"
+              icon={fa4}
+              style={{ color: "#ffffff" }}
+              onClick={() => handlePageChange(4)}
+            />
+            <FontAwesomeIcon
+              className="my-fa-icon"
+              icon={faChevronRight}
+              size="lg"
+              style={{ color: "#ffffff" }}
+              onClick={() => handlePageChange(currentPage + 1)}
+            />{" "}
           </div>
         </div>
       </div>

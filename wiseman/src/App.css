@@ -82,7 +82,7 @@ ul {
 }
 
 .inline {
-  max-width: 70%;
+  max-width: 1000px;
   min-height: 100%;
   margin: 0 auto;
   text-align: center;
@@ -142,6 +142,17 @@ p {
 }
 
 /* Tabel */
+table {
+  display: table;
+  border-collapse: collapse;
+  min-width: 100%;
+  font-size: 1rem;
+  table-layout: fixed;
+  text-indent: initial;
+  border-spacing: 2px;
+  border-color: gray;
+}
+
 tbody {
   display: table-row-group;
   vertical-align: middle;
@@ -163,4 +174,16 @@ td {
   text-align: left;
   color: #ffffffdf;
   padding: .625rem 1rem;
+  width: 20%;
+  /* border-bottom: #fff 0.625rem solid; */
+}
+
+.my-fa-icon {
+  /* background-color: #3a3d57; */
+  margin: 5px;
+}
+
+.my-fa-icon:hover {
+  cursor: pointer;
+  opacity: 0.7;
 }
