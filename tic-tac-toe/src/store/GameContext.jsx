@@ -3,7 +3,8 @@ import React, { createContext, useState } from "react";
 export const GameContext = createContext();
 
 export function GameContextProvider({ children }) {
-  const initialPlayers = JSON.parse(localStorage.getItem("games") || "[]");
+  const initialPlayers =  useState([])
+  // JSON.parse(localStorage.getItem("games") || "[]");
 
   const [players, setPlayers] = useState(initialPlayers);
 

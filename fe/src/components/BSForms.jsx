@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -20,24 +20,6 @@ function BSForms({ selectedShipment, setSelectedShipmens }) {
   const consigneeRef = useRef();
   const found = selectedShipment;
 
-  // const edit = () => {
-  //   shipmentInfoFromFile[shipmentOrderNo] = {
-  //     orderNo: orderNoRef.current.value,
-  //     date: dateRef.current.value,
-  //     customer: customerRef.current.value,
-  //     trackingNo: trackingNoRef.current.value,
-  //     status: statusRef.current.value,
-  //     consignee: consigneeRef.current.value
-  //   };
-  // }
-  // useEffect(() => {
-  //   fetch(shipmentInfoFromFile)
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       setShipments(json || []);
-  //     });
-  // }, [setShipments]);
-
   const edit = () => {
     shipmentInfoFromFile[index] = {
       "orderNo": orderNoRef.current.value,
@@ -48,31 +30,6 @@ function BSForms({ selectedShipment, setSelectedShipmens }) {
       "consignee": consigneeRef.current.value,
     };
   };
-  // useEffect(() => {
-  //   if (selectedShipment) {
-  //     orderNoRef.current.value = selectedShipment.orderNo;
-  //     dateRef.current.value = selectedShipment.date;
-  //     customerRef.current.value = selectedShipment.customer;
-  //     trackingNoRef.current.value = selectedShipment.trackingNo;
-  //     statusRef.current.value = selectedShipment.status;
-  //     consigneeRef.current.value = selectedShipment.consignee;
-  //   }
-  // }, [selectedShipment]);
-
-  // function edit() {
-  //   selectedShipment[index] = {
-  //     orderNo: orderNoRef.current.value,
-  //     date: dateRef.current.value,
-  //     customer: customerRef.current.value,
-  //     trackingNo: trackingNoRef.current.value,
-  //     status: statusRef.current.value,
-  //     consignee: consigneeRef.current.value,
-  //   };
-  // fetch(shipmentInfoFromFile, {
-  //   method: "PUT",
-  //   body: JSON.stringify(selectedShipment)
-  // })
-  // }
 
   return (
     <div>

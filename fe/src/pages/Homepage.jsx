@@ -2,7 +2,6 @@ import Table from "react-bootstrap/Table";
 import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "../App.css";
-// import shipmentInfoFromFile from "../data/Shipments.json";
 import { Link } from "react-router-dom";
 import config from "../data/config.json";
 import { Spinner } from "react-bootstrap";
