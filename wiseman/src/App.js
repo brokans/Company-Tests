@@ -11,7 +11,7 @@ function App() {
         <img className="logo" src="/logo.svg" alt="" />
         <ul className="nav-bar-ul">
           <li>
-            <Link to="artikkel/">ARTIKKEL</Link>
+            <Link to="artikkel">ARTIKKEL</Link>
           </li>
           <li>
             <Link to="tabel/">TABEL</Link>
@@ -23,7 +23,7 @@ function App() {
       </div>
 
       <Routes>
-        <Route path="/artikkel" element={<Artikkel />} />
+        <Route path="/artikkel/:id" element={<Artikkel />} />
         <Route path="/tabel" element={<Tabel />} />
         <Route path="/gameOfLife" element={<GameOfLife />} />
       </Routes>
