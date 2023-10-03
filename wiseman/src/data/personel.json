@@ -1,3 +1,4 @@
 {
-    "personelDataURL": "https://bros-webshop-default-rtdb.europe-west1.firebasedatabase.app/nimekiri.json"
+    "personelDataURL": "https://bros-webshop-default-rtdb.europe-west1.firebasedatabase.app/nimekiri.json",
+    "articleDataURL": "https://bros-webshop-default-rtdb.europe-west1.firebasedatabase.app/artikkel.json"
   }

@@ -10,6 +10,8 @@ import {
   fa2,
   fa3,
   fa4,
+  faCaretUp,
+  faCaretDown,
 } from "@fortawesome/free-solid-svg-icons";
 
 function Tabel() {
@@ -19,6 +21,9 @@ function Tabel() {
   const [postsPerPage, setPostsPerPage] = useState(10);
   const [leftButtonDisabled, setLeftButtonDisabled] = useState(true);
   const [rightButtonDisabled, setRightButtonDisabled] = useState(false);
+  const [upArrowDisabled, setUpArrowDisabled] = useState(false)
+  const [downArrowDisabled, setDownArrowDisabled] = useState(true)
+
   const [tableRowClicked, setTableRowClicked] = useState(false);
 
   useEffect(() => {
@@ -45,20 +50,18 @@ function Tabel() {
   const endIndex = currentPage * postsPerPage;
   const startIndex = endIndex - postsPerPage;
   const currentItems = list.slice(startIndex, endIndex);
-  console.log(list);
+  
   const mapGender = (sex) => {
     if (sex === "m") return "Mees";
     if (sex === "f") return "Naine";
     return sex;
   };
 
-  function removePfromText(html){
+  function removePfromText(html) {
     const cleanedText = html.replace(/<\/?p>/g, "");
-    
-    return cleanedText
-  }
-  
 
+    return cleanedText;
+  }
 
   const convertPersonalNumber = (personalNumber) => {
     if (personalNumber !== 11) {
@@ -106,7 +109,7 @@ function Tabel() {
     }
   };
 
-  function incPage() {
+  const incPage = () => {
     if (currentPage < 4) {
       setCurrentPage(currentPage + 1);
       setLeftButtonDisabled(false);
@@ -114,9 +117,46 @@ function Tabel() {
     if (currentPage === 3) {
       setRightButtonDisabled(true);
     }
-  }
+  };
 
-  console.log(tableRowClicked);
+  const sortAZ = () => {
+    const sortedNames =  [...list].sort((a, b) =>
+     a.firstname.localeCompare(b.firstname, "et"));
+    setData({...data, list: sortedNames});
+    setUpArrowDisabled(true);
+  };
+  const sortZA = () => {
+    const sortedNames =  [...list].sort((a, b) =>
+     b.firstname.localeCompare(a.firstname, "et"));
+    setData({...data, list: sortedNames});
+  };
+
+  const sortSurnameAZ = () => {
+    const sortedNames =  [...list].sort((a, b) =>
+     a.surname.localeCompare(b.surname, "et"));
+    setData({...data, list: sortedNames});
+    setUpArrowDisabled(true);
+  };
+
+  const sortSurnameZA = () => {
+    const sortedNames =  [...list].sort((a, b) =>
+     b.surname.localeCompare(a.surname, "et"));
+    setData({...data, list: sortedNames});
+  };
+
+  const sortGenderAZ = () => {
+    const sortedNames =  [...list].sort((a, b) =>
+     a.sex.localeCompare(b.sex, "et"));
+    setData({...data, list: sortedNames});
+    setUpArrowDisabled(true);
+  };
+
+  const sortGenderZA = () => {
+    const sortedNames =  [...list].sort((a, b) =>
+     b.sex.localeCompare(a.sex, "et"));
+    setData({...data, list: sortedNames});
+  };
+
   return (
     <div className="page">
       <div className="inline">
@@ -126,15 +166,114 @@ function Tabel() {
           <Table>
             <thead>
               <tr>
-                <th data-field="ordern">Eesnimi</th>
-                <th data-field="deliverdate">Perekonnanimi</th>
+                <th data-field="ordern">
+                  Eesnimi
+                  <FontAwesomeIcon
+                    icon={faCaretUp}
+                    size="lg"
+                    style={{
+                      position: "absolute",
+                      top: "42",
+                      left: "75",
+                      color: "#ffffff",
+                      cursor: upArrowDisabled ? "pointer": "inactive",
+                    }}
+                    onClick={() => sortAZ()}
+                  />
+                  <FontAwesomeIcon
+                    icon={faCaretDown}
+                    size="lg"
+                    style={{
+                      position: "absolute",
+                      top: "50",
+                      left: "75",
+                      color: "#ffffff",
+                      cursor: downArrowDisabled ? "pointer": "inactive",
+                    }}
+                    onClick={() => sortZA()}
+                  />
+                </th>
+
+                <th data-field="deliverdate">
+                  Perekonnanimi
+                  <FontAwesomeIcon
+                    icon={faCaretUp}
+                    size="lg"
+                    style={{
+                      position: "absolute",
+                      top: "42",
+                      left: "325",
+                      color: "#ffffff",
+                      cursor: upArrowDisabled ? "pointer": "inactive",
+                    }}
+                    onClick={() => sortSurnameAZ()}
+                  />
+                  <FontAwesomeIcon
+                    icon={faCaretDown}
+                    size="lg"
+                    style={{
+                      position: "absolute",
+                      top: "50",
+                      left: "325",
+                      color: "#ffffff",
+                      cursor: upArrowDisabled ? "pointer": "inactive",
+                    }}
+                    onClick={() => sortSurnameZA()}
+                  />
+                </th>
                 <th data-field="customer">
                   Sugu
-                  <span></span>
+                  <FontAwesomeIcon
+                    icon={faCaretUp}
+                    size="lg"
+                    style={{
+                      position: "absolute",
+                      top: "42",
+                      left: "455",
+                      color: "#ffffff",
+                      cursor: upArrowDisabled ? "pointer": "inactive",
+                    }}
+                    onClick={() => sortGenderAZ()}
+                  />
+                  <FontAwesomeIcon
+                    icon={faCaretDown}
+                    size="lg"
+                    style={{
+                      position: "absolute",
+                      top: "50",
+                      left: "455",
+                      color: "#ffffff",
+                      cursor: upArrowDisabled ? "pointer": "inactive",
+                    }}
+                    onClick={() => sortGenderZA()}
+                  />
                 </th>
                 <th data-field="trackingNr">
                   Sünnikuupäev
-                  <span></span>
+                  <FontAwesomeIcon
+                    icon={faCaretUp}
+                    size="lg"
+                    style={{
+                      position: "absolute",
+                      top: "42",
+                      left: "720",
+                      color: "#ffffff",
+                      cursor: upArrowDisabled ? "pointer": "inactive",
+                    }}
+                    onClick={() => sortAZ()}
+                  />
+                  <FontAwesomeIcon
+                    icon={faCaretDown}
+                    size="lg"
+                    style={{
+                      position: "absolute",
+                      top: "50",
+                      left: "720",
+                      color: "#ffffff",
+                      cursor: upArrowDisabled ? "pointer": "inactive",
+                    }}
+                    onClick={() => sortZA()}
+                  />
                 </th>
                 <th data-field="status">
                   Telefon
@@ -152,21 +291,28 @@ function Tabel() {
                     <td>{convertPersonalNumber(person.personal_code)}</td>
                     <td>{person.phone}</td>
                   </tr>
-                  {tableRowClicked ===
-                    person.id && (
-                      <tr className="tr-pop">
-                        <td colSpan="5" className="td-pop">
-                          <div className="td-data">
-                            <div><img className="td-img" src={person.image.medium} alt="" /></div>
-                            <div className="td-text">
-                              {removePfromText(person.body)}
-                              <a href=""></a>
-                            </div>
+                  {tableRowClicked === person.id && (
+                    <tr className="tr-pop">
+                      <td colSpan="5" className="td-pop">
+                        <div className="td-data">
+                          <div>
+                            <img
+                              className="td-img"
+                              src={person.image.medium}
+                              alt=""
+                            />
+                          </div>
+                          <div className="td-text">
+                            {removePfromText(person.body)}
+                          </div>
+                          <div className="link">
+                          <a href={"/artikkel/" + person.id}>LOE ROHKEM</a>
                           </div>
                           
-                        </td>
-                      </tr>
-                    )}
+                        </div>
+                      </td>
+                    </tr>
+                  )}
                 </React.Fragment>
               ))}
             </tbody>
