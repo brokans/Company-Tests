@@ -306,7 +306,7 @@ function Tabel() {
                             {removePfromText(person.body)}
                           </div>
                           <div className="link">
-                          <a href={"/artikkel/" + person.id}>LOE ROHKEM</a>
+                          <a href={"/article/" + person.id}>LOE ROHKEM</a>
                           </div>
                           
                         </div>

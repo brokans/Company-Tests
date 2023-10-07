@@ -1,32 +1,16 @@
 import React, { useEffect, useState } from "react";
-import config from "../data/personel.json";
 import { useParams } from "react-router-dom";
+import config from "../data/personel.json";
 import { Spinner } from "react-bootstrap";
 
-function Artikkel() {
+function TableArticle() {
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  const [currentArticle, setCurrentArticle] = useState(config.articleDataURL)
-
 
   useEffect(() => {
     fetch(config.personelDataURL)
-      .then((response) => response.json())
-      .then((jsonData) => {
-        setData(jsonData || []);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching JSON:", error);
-      });
-  }, []);
-
-  console.log(data)
-
-  useEffect(() => {
-    fetch(currentArticle)
-      .then((response) => response.json())
+      .then((res) => res.json())
       .then((json) => {
         setData(json || []);
         setLoading(false);
@@ -34,7 +18,7 @@ function Artikkel() {
       .catch((error) => {
         console.error("Error fetching JSON:", error);
       });
-  }, [currentArticle]);
+  }, []);
 
   if (!data || !data.list) {
     return <Spinner />;
@@ -45,9 +29,10 @@ function Artikkel() {
   }
 
   const list = data.list;
-  const currentItems = list.slice();
-  const found = currentItems.find((info) => info.id === id);
 
+  const currentItems = list.slice();
+
+  const found = currentItems.find((info) => info.id === id);
   if (!found || !found.body) {
     return <div>Article not found or body not available.</div>;
   }
@@ -82,13 +67,11 @@ function Artikkel() {
           />
           <p>{found.image.title}</p>
         </div>
-        <div>
-          <p>{paragraphs}</p>
-        </div>
+        <div>{paragraphs}</div>
         <div className="pink-btn">{found.tags}</div>
       </div>
     </div>
   );
 }
 
-export default Artikkel;
+export default TableArticle;
