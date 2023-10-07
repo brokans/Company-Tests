@@ -8,7 +8,7 @@ import TableArticle from "./pages/TableArticle"
 function App() {
   return (
     <div className="App">
-      <div className="nav-bar">
+      <div className="nav-bar" expand="md">
         <Link to="/">
           <img className="logo" src="/logo.svg" alt=""/>
         </Link>
