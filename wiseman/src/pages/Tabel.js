@@ -3,9 +3,9 @@ import config from "../data/personel.json";
 import Table from "react-bootstrap/Table";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Spinner } from "react-bootstrap";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import {
   faChevronRight,
+  faChevronLeft,
   fa1,
   fa2,
   fa3,
@@ -21,8 +21,8 @@ function Tabel() {
   const [postsPerPage, setPostsPerPage] = useState(10);
   const [leftButtonDisabled, setLeftButtonDisabled] = useState(true);
   const [rightButtonDisabled, setRightButtonDisabled] = useState(false);
-  const [upArrowDisabled, setUpArrowDisabled] = useState(false)
-  const [downArrowDisabled, setDownArrowDisabled] = useState(true)
+  const [upArrowDisabled, setUpArrowDisabled] = useState(false);
+  const [downArrowDisabled, setDownArrowDisabled] = useState(true);
 
   const [tableRowClicked, setTableRowClicked] = useState(false);
 
@@ -50,7 +50,7 @@ function Tabel() {
   const endIndex = currentPage * postsPerPage;
   const startIndex = endIndex - postsPerPage;
   const currentItems = list.slice(startIndex, endIndex);
-  
+
   const mapGender = (sex) => {
     if (sex === "m") return "Mees";
     if (sex === "f") return "Naine";
@@ -120,164 +120,168 @@ function Tabel() {
   };
 
   const sortAZ = () => {
-    const sortedNames =  [...list].sort((a, b) =>
-     a.firstname.localeCompare(b.firstname, "et"));
-    setData({...data, list: sortedNames});
+    const sortedNames = [...list].sort((a, b) =>
+      a.firstname.localeCompare(b.firstname, "et")
+    );
+    setData({ ...data, list: sortedNames });
     setUpArrowDisabled(true);
   };
   const sortZA = () => {
-    const sortedNames =  [...list].sort((a, b) =>
-     b.firstname.localeCompare(a.firstname, "et"));
-    setData({...data, list: sortedNames});
+    const sortedNames = [...list].sort((a, b) =>
+      b.firstname.localeCompare(a.firstname, "et")
+    );
+    setData({ ...data, list: sortedNames });
   };
 
   const sortSurnameAZ = () => {
-    const sortedNames =  [...list].sort((a, b) =>
-     a.surname.localeCompare(b.surname, "et"));
-    setData({...data, list: sortedNames});
+    const sortedNames = [...list].sort((a, b) =>
+      a.surname.localeCompare(b.surname, "et")
+    );
+    setData({ ...data, list: sortedNames });
     setUpArrowDisabled(true);
   };
 
   const sortSurnameZA = () => {
-    const sortedNames =  [...list].sort((a, b) =>
-     b.surname.localeCompare(a.surname, "et"));
-    setData({...data, list: sortedNames});
+    const sortedNames = [...list].sort((a, b) =>
+      b.surname.localeCompare(a.surname, "et")
+    );
+    setData({ ...data, list: sortedNames });
   };
 
   const sortGenderAZ = () => {
-    const sortedNames =  [...list].sort((a, b) =>
-     a.sex.localeCompare(b.sex, "et"));
-    setData({...data, list: sortedNames});
+    const sortedNames = [...list].sort((a, b) =>
+      a.sex.localeCompare(b.sex, "et")
+    );
+    setData({ ...data, list: sortedNames });
     setUpArrowDisabled(true);
   };
 
   const sortGenderZA = () => {
-    const sortedNames =  [...list].sort((a, b) =>
-     b.sex.localeCompare(a.sex, "et"));
-    setData({...data, list: sortedNames});
+    const sortedNames = [...list].sort((a, b) =>
+      b.sex.localeCompare(a.sex, "et")
+    );
+    setData({ ...data, list: sortedNames });
   };
 
   return (
     <div className="page">
       <div className="inline">
+        <h1 className="nimekiri">NIMEKIRI</h1> <br /> <br />
         <div className="tabel">
-          {data.length}
-          <h1 className="nimekiri">NIMEKIRI</h1>
           <Table>
             <thead>
               <tr>
-                <th data-field="ordern">
-                  Eesnimi
-                  <FontAwesomeIcon
-                    icon={faCaretUp}
-                    size="lg"
-                    style={{
-                      position: "absolute",
-                      top: "42",
-                      left: "75",
-                      color: "#ffffff",
-                      cursor: upArrowDisabled ? "pointer": "inactive",
-                    }}
-                    onClick={() => sortAZ()}
-                  />
-                  <FontAwesomeIcon
-                    icon={faCaretDown}
-                    size="lg"
-                    style={{
-                      position: "absolute",
-                      top: "50",
-                      left: "75",
-                      color: "#ffffff",
-                      cursor: downArrowDisabled ? "pointer": "inactive",
-                    }}
-                    onClick={() => sortZA()}
-                  />
+                <th data-field="eesnimi">
+                  <button className="thead-btn">
+                    Eesnimi
+                      <FontAwesomeIcon
+                        className="up-arrow"
+                        icon={faCaretUp}
+                        size="lg"
+                        style={{
+                          position: "absolute",
+                          color: "#ffffff",
+                          cursor: upArrowDisabled ? "pointer" : "inactive",
+                        }}
+                        onClick={() => sortAZ()}
+                      />
+                      <FontAwesomeIcon
+                        className="down-arrow"
+                        icon={faCaretDown}
+                        size="lg"
+                        style={{
+                          position: "absolute",
+                          color: "#ffffff",
+                          cursor: downArrowDisabled ? "pointer" : "inactive",
+                        }}
+                        onClick={() => sortZA()}
+                      />
+                  </button>
                 </th>
 
-                <th data-field="deliverdate">
-                  Perekonnanimi
-                  <FontAwesomeIcon
-                    icon={faCaretUp}
-                    size="lg"
-                    style={{
-                      position: "absolute",
-                      top: "42",
-                      left: "325",
-                      color: "#ffffff",
-                      cursor: upArrowDisabled ? "pointer": "inactive",
-                    }}
-                    onClick={() => sortSurnameAZ()}
-                  />
-                  <FontAwesomeIcon
-                    icon={faCaretDown}
-                    size="lg"
-                    style={{
-                      position: "absolute",
-                      top: "50",
-                      left: "325",
-                      color: "#ffffff",
-                      cursor: upArrowDisabled ? "pointer": "inactive",
-                    }}
-                    onClick={() => sortSurnameZA()}
-                  />
+                <th data-field="perenimi">
+                  <button className="thead-btn">
+                    Perekonnanimi
+                      <FontAwesomeIcon
+                        className="up-arrow"
+                        icon={faCaretUp}
+                        size="lg"
+                        style={{
+                          position: "absolute",
+                          color: "#ffffff",
+                          cursor: upArrowDisabled ? "pointer" : "inactive",
+                        }}
+                        onClick={() => sortSurnameAZ()}
+                      />
+                      <FontAwesomeIcon
+                        className="down-arrow"
+                        icon={faCaretDown}
+                        size="lg"
+                        style={{
+                          position: "absolute",
+                          color: "#ffffff",
+                          cursor: upArrowDisabled ? "pointer" : "inactive",
+                        }}
+                        onClick={() => sortSurnameZA()}
+                      />
+                  </button>
                 </th>
-                <th data-field="customer">
-                  Sugu
-                  <FontAwesomeIcon
-                    icon={faCaretUp}
-                    size="lg"
-                    style={{
-                      position: "absolute",
-                      top: "42",
-                      left: "455",
-                      color: "#ffffff",
-                      cursor: upArrowDisabled ? "pointer": "inactive",
-                    }}
-                    onClick={() => sortGenderAZ()}
-                  />
-                  <FontAwesomeIcon
-                    icon={faCaretDown}
-                    size="lg"
-                    style={{
-                      position: "absolute",
-                      top: "50",
-                      left: "455",
-                      color: "#ffffff",
-                      cursor: upArrowDisabled ? "pointer": "inactive",
-                    }}
-                    onClick={() => sortGenderZA()}
-                  />
+                <th data-field="sugu">
+                  <button className="thead-btn">
+                    Sugu
+                      <FontAwesomeIcon
+                        className="up-arrow"
+                        icon={faCaretUp}
+                        size="lg"
+                        style={{
+                          position: "absolute",
+                          color: "#ffffff",
+                          cursor: upArrowDisabled ? "pointer" : "inactive",
+                        }}
+                        onClick={() => sortGenderAZ()}
+                      />
+                      <FontAwesomeIcon
+                        className="down-arrow"
+                        icon={faCaretDown}
+                        size="lg"
+                        style={{
+                          position: "absolute",
+                          color: "#ffffff",
+                          cursor: upArrowDisabled ? "pointer" : "inactive",
+                        }}
+                        onClick={() => sortGenderZA()}
+                      />
+                  </button>
                 </th>
-                <th data-field="trackingNr">
-                  Sünnikuupäev
-                  <FontAwesomeIcon
-                    icon={faCaretUp}
-                    size="lg"
-                    style={{
-                      position: "absolute",
-                      top: "42",
-                      left: "720",
-                      color: "#ffffff",
-                      cursor: upArrowDisabled ? "pointer": "inactive",
-                    }}
-                    onClick={() => sortAZ()}
-                  />
-                  <FontAwesomeIcon
-                    icon={faCaretDown}
-                    size="lg"
-                    style={{
-                      position: "absolute",
-                      top: "50",
-                      left: "720",
-                      color: "#ffffff",
-                      cursor: upArrowDisabled ? "pointer": "inactive",
-                    }}
-                    onClick={() => sortZA()}
-                  />
+                <th data-field="sünnipäev">
+                  <button className="thead-btn">
+                    Sünnikuupäev
+                      <FontAwesomeIcon
+                        className="up-arrow"
+                        icon={faCaretUp}
+                        size="lg"
+                        style={{
+                          position: "absolute",
+                          color: "#ffffff",
+                          cursor: upArrowDisabled ? "pointer" : "inactive",
+                        }}
+                        onClick={() => sortAZ()}
+                      />
+                      <FontAwesomeIcon
+                        className="down-arrow"
+                        icon={faCaretDown}
+                        size="lg"
+                        style={{
+                          position: "absolute",
+                          color: "#ffffff",
+                          cursor: upArrowDisabled ? "pointer" : "inactive",
+                        }}
+                        onClick={() => sortZA()}
+                      />
+                  </button>
                 </th>
-                <th data-field="status">
+                <th data-field="telefon">
                   Telefon
-                  <span></span>
                 </th>
               </tr>
             </thead>
@@ -306,9 +310,8 @@ function Tabel() {
                             {removePfromText(person.body)}
                           </div>
                           <div className="link">
-                          <a href={"/article/" + person.id}>LOE ROHKEM</a>
+                            <a href={"/article/" + person.id}>LOE ROHKEM</a>
                           </div>
-                          
                         </div>
                       </td>
                     </tr>
@@ -317,7 +320,7 @@ function Tabel() {
               ))}
             </tbody>
           </Table>
-          <div className="buttonWrapper">
+          <div>
             <FontAwesomeIcon
               className="my-fa-icon"
               icon={faChevronLeft}

@@ -74,10 +74,21 @@ Link:hover {
   background-size: contain;
   background-size: cover;
   filter: blur(0.625rem);
-  transition: 0.3s;
   background-image: url("https://midaiganes.irw.ee/api/imgs/large/a3dac073.jpg");
   background-size: cover;
+  transition: 0.5s;
 }
+
+.image-face:hover, .image-fade-img{
+  transform: scale(1.05);
+  transition: 0.5s;
+}
+
+/* .image-fade-img {
+  transform: scale(1.);
+  transition: 0.5s;
+} */
+
 
 .image-face {
   background-size: contain;
@@ -93,11 +104,6 @@ Link:hover {
   background-size: contain;
 }
 
-.image-face:hover,
-.image-fade-img {
-  transform: scale(1.1);
-  transition: 0.5s;
-}
 
 .nav-bar {
   position: fixed;
@@ -112,12 +118,136 @@ Link:hover {
   text-align: right;
 }
 
+
+.nav-bar-btn {
+  visibility: hidden;
+}
+
+/* .navbar-btn-cls {
+  visibility: hidden;
+} */
+
+
+
+@media (max-width: 3840px) {
+  .page {
+    background-image: url(../public/bg-deco-left.svg),url(../public/bg-deco-right.svg);
+    background-color: #3a3d57;
+    background-repeat: no-repeat;
+    background-position: 220px bottom, 100% top;
+    background-size: 150px, 250px;
+    background-attachment: fixed;
+    display: block;
+    margin-left: 220px;
+    height: 100vh;
+    overflow: auto;
+    padding: 5rem 2.5rem;
+    text-align: center;
+  }
+
+  .nav-bar-top {
+    visibility: hidden;
+  }
+}
+
 @media (max-width: 960px) {
-  .nav-bar {
-    width: 100%;
-    height: 100px;
+
+  .page {
+    background-image: url(../public/bg-deco-left.svg),url(../public/bg-deco-right.svg);
+    background-color: #3a3d57;
+    background-repeat: no-repeat;
+    background-position: 0px bottom, 100% top;
+    background-size: 150px, 250px;
+    background-attachment: fixed;
+    height: 100vh;
+    margin: auto;
+    overflow: auto;
+    padding: 5rem 2.5rem;
+    text-align: center;
+  }
+
+
+  .nav-bar-top {
+    display: flex;
+    justify-content:center;    
+    background: #fff;
+    position: relative;
+    width: 960px;
+    height: 50px;
+    padding: 10px 20px;
     left: 0;
     top: 0; /* Change position to top */
+    align-items: flex-start;
+    align-content: stretch;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    visibility: visible;
+  }
+
+  .nav-bar {
+    display: flex;
+    visibility: hidden;
+    position: fixed;
+    background: #fff;
+    top: 0;
+    left: 0;
+    width: 220px;
+    padding: 1.5625rem;
+    height: 100vh;
+    z-index: 900;
+    overflow: auto;
+    text-align: right;
+
+  }
+
+  .nav-bar.open {
+    display: flex;
+    visibility: visible;
+    position: fixed;
+    background: #fff;
+    top: 0;
+    left: 0;
+    width: 220px;
+    padding-top: 50px;
+    /* padding: 1.5625rem; */
+    height: 100vh;
+    z-index: 900;
+    overflow: auto;
+    text-align: right;
+  }
+
+  .nav-bar-ul.open {
+    padding-top: 50px;
+  }
+
+  .navbar-btn-cls.open {
+  
+    /* visibility: visible; */
+    border: none;
+    display: block;  
+    left: 0;
+    cursor: pointer;
+  }
+
+  .logo.open{
+    visibility: hidden;
+  }
+
+  .logo {
+    align-content: center;
+    position: relative;
+    margin: 0 auto;
+    cursor: pointer;
+    width: 100px;
+  }
+
+  .navbar-btn {
+    display: block;
+    visibility: visible;
+    border: none;
+    display: block;  
+    left: 0;
+    cursor: pointer;
   }
 }
 
@@ -146,19 +276,6 @@ ul {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.page {
-  background-color: #3a3d57;
-  background-repeat: no-repeat;
-  background-position: 220px bottom, 100% 0;
-  background-size: 150px, 250px;
-  background-attachment: fixed;
-  display: block;
-  margin-left: 220px;
-  height: 100vh;
-  overflow: auto;
-  padding: 5rem 2.5rem;
-  text-align: center;
-}
 
 .inline {
   max-width: 1000px;
@@ -241,6 +358,32 @@ thead {
   display: table-header-group;
   vertical-align: middle;
 }
+
+.thead-btn {
+  appearance: none;
+  border: none;
+  background: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: bold;
+} 
+
+.up-arrow {
+  top: 78px;
+  padding-left: 3px;
+  display: flexbox;
+
+}
+
+.down-arrow {
+  top: 86px;
+  padding-left: 3px;
+  display: flexbox;
+
+}
+
 
 tbody {
   display: table-row-group;
