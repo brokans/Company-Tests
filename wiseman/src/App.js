@@ -40,11 +40,8 @@ function App() {
 
       <div className="nav-bar-top" expand="md">
         <button onClick={() => toggleNav()} className="navbar-btn">
-          <FontAwesomeIcon icon={faBars} />
+          {navOpen ? <FontAwesomeIcon icon={faXmark} size="lg" /> : <FontAwesomeIcon icon={faBars} /> }
         </button>
-        {/* <button className={`navbar-btn-cls ${navOpen ? 'open' : ''}`}>
-          <FontAwesomeIcon icon={faXmark} size="lg" />
-        </button> */}
         <Link to="/">
           <img className="logo" src="/logo.svg" alt=""/>
         </Link>

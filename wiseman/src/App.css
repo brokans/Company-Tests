@@ -91,10 +91,6 @@ Link:hover {
   transition: 0.5s;
 }
 
-/* .image-fade-img {
-  transform: scale(1.);
-  transition: 0.5s;
-} */
 
 
 .image-face {
@@ -124,7 +120,6 @@ Link:hover {
   z-index: 5;
   transition: 0.5s;
   background: center center no-repeat;
-  /* background-image:image() */
   background-size: contain;
 }
 
@@ -500,7 +495,6 @@ td {
 }
 
 .my-fa-icon {
-  /* background-color: #3a3d57; */
   margin: 5px;
 }
 
