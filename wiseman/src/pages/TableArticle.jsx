@@ -49,6 +49,7 @@ function TableArticle() {
 
     return cleanedText;
   }
+  console.log(found.image.medium)
 
   return (
     <div className="page">
@@ -57,15 +58,25 @@ function TableArticle() {
         <div className="intro">
           <p>{removePfromText(found.intro)}</p>
         </div>
-        <div>
+        <div className="image-container">
           <img
             className="article-image"
-            tabindex="0"
+            tabIndex="0"
             src={found.image.medium}
             alt="Eiusmod sunt ex culpa aute in ipsum ipsum pariatur sint consequat incididunt."
             title="Culpa ipsum tempor do laborum mollit."
           />
-          <p>{found.image.title}</p>
+          <div className="article-img-text">{found.image.title}</div>
+          <div className="img-fade">
+          <div>
+            <img  className="image-fade-img-tabel" src={found.image.medium} alt="" />
+              {" "}
+            </div>
+          </div>
+          <div>
+            <img className="image-face-tabel" src={found.image.medium} alt="" />
+            
+          </div>
         </div>
         <div>{paragraphs}</div>
         <div className="pink-btn">{found.tags}</div>

@@ -18,30 +18,33 @@ function App() {
     <div className="App">
       <div className={`nav-bar ${navOpen ? 'open' : ''}`} expand="md">
         
-        <Link to="/">
-          <img className={`logo ${navOpen ? 'open' : ''}`} src="/logo.svg" alt=""/>
-        </Link>
-        
+        {/* <Link to="/">
+         
+        </Link> */}
+        <a href="/"> <img className={`logo ${navOpen ? 'open' : ''}`} src="/logo.svg" alt=""/></a>
         <ul className={`nav-bar-ul ${navOpen ? 'open' : ''}`}>
           <li>
-            <Link to="article">ARTIKKEL</Link>
+            <a href="/article">ARTIKKEL</a>
+            {/* <Link to="article"></Link> */}
           </li>
           <li>
-            <Link to="tabel/">TABEL</Link>
+            {/* <Link to="tabel/">TABEL</Link> */}
+            <a href="/tabel">TABEL</a>
           </li>
           <li>
-            <Link to="gameOfLife/">GAME OF LIFE</Link>
+            {/* <Link to="gameOfLife/">GAME OF LIFE</Link> */}
+            <a href="/gameOfLife">GAME OF LIFE</a>
           </li>
         </ul>
       </div>
 
       <div className="nav-bar-top" expand="md">
         <button onClick={() => toggleNav()} className="navbar-btn">
-        <button className={`navbar-btn-cls ${navOpen ? 'open' : ''}`}>
-          <FontAwesomeIcon icon={faXmark} size="lg" />
-        </button>
           <FontAwesomeIcon icon={faBars} />
         </button>
+        {/* <button className={`navbar-btn-cls ${navOpen ? 'open' : ''}`}>
+          <FontAwesomeIcon icon={faXmark} size="lg" />
+        </button> */}
         <Link to="/">
           <img className="logo" src="/logo.svg" alt=""/>
         </Link>
