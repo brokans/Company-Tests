@@ -10,9 +10,9 @@ function Navbars() {
     
   return (
     <div>
-      <Navbar expand="lg" className="bg-body-tertiary">
+      <Navbar style={{ background: 'none' }} expand="lg" className="bg-body-tertiary" >
       <Container fluid>
-        <Navbar.Brand href="/">Navbar scroll</Navbar.Brand>
+        <Navbar.Brand href="/">Line Stuudio</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -20,31 +20,22 @@ function Navbars() {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="#action2">Link</Nav.Link>
-            <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+            <Nav.Link href="/admin">admin</Nav.Link>
+            <Nav.Link href="/contacts">Kontaktid</Nav.Link>
+            <NavDropdown title="Ettevõttest" id="navbarScrollingDropdown">
+              <NavDropdown.Item href="#action3">Blogi</NavDropdown.Item>
               <NavDropdown.Item href="#action4">
-                Another action
+                Uudised
               </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action5">
-                Something else here
+                Tule tööle
               </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="#" >
-              Link
+            <Nav.Link href="/locations" >
+              Asukohad
             </Nav.Link>
           </Nav>
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form>
         </Navbar.Collapse>
       </Container>
     </Navbar>

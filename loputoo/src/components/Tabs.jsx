@@ -6,14 +6,14 @@ function Tabs() {
     <div>
         <Nav variant="tabs" defaultActiveKey="/home">
       <Nav.Item>
-        <Nav.Link href="/home">Tooted</Nav.Link>
+        <Nav.Link href="/arhitektuur">Arhitektuur</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="link-1">Teenused</Nav.Link>
+        <Nav.Link href="/sisearhitektuur" eventKey="link-1">Sisearhitektuur</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="disabled">
-          Uudised
+        <Nav.Link href="/eriosad" eventKey="disabled">
+          Eriosad
         </Nav.Link>
       </Nav.Item>
     </Nav>
