@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import config from "../../data/config.json";
-import Button from "react-bootstrap/Button";
+import { Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function HaldaAsukohtasid() {
   const [shops, uShops] = useState([]);
-
+  const [isLoading, setLoading] = useState(true);
   const nameRef = useRef();
   const openTimeRef = useRef();
   const latitudeRef = useRef();
@@ -16,7 +16,10 @@ function HaldaAsukohtasid() {
   useEffect(() => {
     fetch(config.shops)
       .then((res) => res.json())
-      .then((json) => uShops(json || []));
+      .then((json) => {
+        uShops(json || [])
+        setLoading(true)
+      });
   }, []);
 
   function addShop() {
@@ -45,6 +48,11 @@ function HaldaAsukohtasid() {
       body: JSON.stringify(shops),
     });
   }
+
+  // if (isLoading === true) {
+  //   return <Spinner />;
+  // }
+
   return (
     <div>
       <label htmlFor="">Poe nimi:</label> <br />
@@ -69,7 +77,6 @@ function HaldaAsukohtasid() {
           <div>{shop.name}</div>
           <div>Avatud: {shop.open}</div>
           <div>{shop.address}</div>
-          <div>{shop.url}</div>
           <Button variant="dark" onClick={() => deleteShop(index)}>
             X
           </Button>

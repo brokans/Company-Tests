@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import config from "../../data/config.json";
 import { ToastContainer, toast } from "react-toastify";
-import { Button, Spinner } from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
 
 
 function EditLocation() {
@@ -87,6 +87,7 @@ function EditLocation() {
       <input ref={urlRef} defaultValue={found.url} type="text" /> <br /> <br />
       <button onClick={edit}>Muuda</button>
       <ToastContainer position="top-right" autoClose={2000} theme="dark" />
+
     </div>
   );
 }

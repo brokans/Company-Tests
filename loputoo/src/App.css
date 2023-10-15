@@ -1,8 +1,3 @@
-.App {
-  text-align: center;
-}
-
-
 .map {
   height: 400px;
   margin: 20px;
@@ -18,7 +13,7 @@
 /* HOMEPAGE */
 .homePage-img {
   width: 100%;
-  height: 100VH;
+  height: 100vh;
 }
 
 .homePageCards {
@@ -35,7 +30,7 @@
 .cardOne_square {
   margin-top: 10px;
   width: 50%;
-  min-height: 835px;  
+  min-height: 835px;
 }
 
 .cardTwo_square {
@@ -43,10 +38,7 @@
   width: 50%;
   min-height: 835px;
   margin-left: 10px;
-
 }
-
-
 
 /* CARDS */
 .cardOne {
@@ -73,7 +65,6 @@
   height: 100%;
   width: 100%;
   overflow: hidden;
-  
 }
 .card-img2 {
   position: absolute;
@@ -84,7 +75,6 @@
   height: 100%;
   width: 100%;
   overflow: hidden;
-  
 }
 .card-img3 {
   position: absolute;
@@ -95,7 +85,6 @@
   height: 100%;
   width: 100%;
   overflow: hidden;
-  
 }
 
 .card_title {
@@ -131,10 +120,9 @@
   height: 100%;
   width: 100%;
   overflow: hidden;
-  
 }
 
-.card_title_A{
+.card_title_A {
   margin-top: 20px;
   margin-left: 20px;
   text-align: right;
@@ -143,4 +131,26 @@
   text-align: start !important;
   color: black;
   border-bottom: none;
+}
+
+/* MANAGE PROJECTS */
+.manage_project {
+  margin: auto;
+  width: 60%;
+  border: 1px solid gray;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px 5px gray;
+}
+
+/* MANAGE PRODUCTS */
+.product-card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  margin: 0 2%;
+  width: 1000px;
+  margin: 5px 5px;
+}
+
+.product-card {
+  width: 20%;
 }

@@ -1,15 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import config from "../../data/config.json";
-import { Button, Spinner } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
+import { Button, Spinner } from "react-bootstrap";
+import { useParams, useNavigate } from "react-router-dom";
 
-function MaintainProjects() {
+function EditProject() {
+  const { index } = useParams();
   const [projects, setProjects] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+
   const nameRef = useRef();
   const photoRef = useRef();
   const infoRef = useRef();
-  const [isLoading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
+  const found = projects[index];
 
   useEffect(() => {
     fetch(config.projects)
@@ -20,27 +26,38 @@ function MaintainProjects() {
       });
   }, []);
 
-  function addProject() {
-    projects.push({
+  function edit() {
+    if (nameRef.current.value === "") {
+      toast.error("Palun sisesta projekti nimi.");
+      return; // funktsioon ei lähe edasi siit kohast
+    }
+
+    if (infoRef.current.value === "") {
+      toast.error("Palun sisesta info.");
+      return;
+    }
+
+    //  nameRef.current.value[0].toLowerCase() === nameRef.current.value[0]
+    if (nameRef.current.value[0].toUpperCase() !== nameRef.current.value[0]) {
+      toast.error("Palun sisesta projekti nimi suure algustähega.");
+      return;
+    }
+
+    if (photoRef.current.value.includes(" ")) {
+      toast.error("Palun sisesta URL ilma tühikuteta.");
+      return;
+    }
+
+    projects[index] = {
       name: nameRef.current.value,
-      photo: photoRef.current.value,
       info: infoRef.current.value,
-    });
-    setProjects(projects.slice());
-
+      photo: photoRef.current.value,
+    };
     fetch(config.projects, {
       method: "PUT",
       body: JSON.stringify(projects),
-    });
-  }
-
-  function deleteProject(index) {
-    projects.splice(index, 1);
-    setProjects(projects.slice());
-    fetch(config.projects, {
-      method: "PUT",
-      body: JSON.stringify(projects),
-    });
+      // Ootab vastuse andmebaasist ära ja siis jätkab koodi lugemist
+    }).then(() => navigate("/admin/maintain-projects"));
   }
 
   if (isLoading === true) {
@@ -49,12 +66,12 @@ function MaintainProjects() {
 
   return (
     <div>
-      <br />
       <Form>
         <Form.Group style={{ width: "18rem", margin: "auto" }} className="mb-3">
           <Form.Label>Projekti nimi</Form.Label>
           <Form.Control
             ref={nameRef}
+            defaultValue={found.name}
             type="text"
             placeholder="Nimi"
             name="from_name"
@@ -67,6 +84,7 @@ function MaintainProjects() {
           <Form.Label>Foto</Form.Label>
           <Form.Control
             ref={photoRef}
+            defaultValue={found.photo}
             className="mb-3"
             type="text"
             placeholder="photo URL"
@@ -81,36 +99,19 @@ function MaintainProjects() {
           <Form.Label>Projekti info</Form.Label>
           <Form.Control
             ref={infoRef}
+            defaultValue={found.info}
             as="textarea"
             type="text"
             rows={5}
           />
         </Form.Group>
-        <Button onClick={addProject} variant="primary">
-          Lisa
+        <Button onClick={edit} variant="primary">
+          Muuda
         </Button>
       </Form>
-      <br />
-      {projects.map((project, index) => (
-        <div key={index} className="manage_project">
-          {index} <br />
-          {project.name} <br />
-          <hr />
-          {project.info} <br />
-          <hr />
-          <Button
-            as={Link}
-            to={"/admin/maintain-projects/edit-project/" + index}
-          >
-            Muuda
-          </Button>
-          <Button onClick={() => deleteProject(index)} variant="dark ">
-            X
-          </Button>
-        </div>
-      ))}
+      <ToastContainer position="top-right" autoClose={2000} theme="dark" />
     </div>
   );
 }
 
-export default MaintainProjects;
+export default EditProject;

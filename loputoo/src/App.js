@@ -16,6 +16,7 @@ import MaintainCourses from "./pages/admin/MaintainCourses";
 import MaintainProjects from "./pages/admin/MaintainProjects";
 import MaintainProducts from "./pages/admin/MaintainProducts";
 import EditLocations from "./pages/admin/EditLocation";
+import EditProject from "./pages/admin/EditProject";
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
         <Route path="/admin/maintain-projects" element={<MaintainProjects />} />
         <Route path="/admin/maintain-products" element={<MaintainProducts />} />
         <Route path="/admin/maintain-locations/edit-location/:index" element={<EditLocations />} />
+        <Route path="/admin/maintain-projects/edit-project/:index" element={<EditProject />} />
 
       </Routes>
     </div>
