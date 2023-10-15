@@ -49,7 +49,7 @@ function MaintainProjects() {
 
   return (
     <div>
-      <br />
+      <br /> <br />
       <Form>
         <Form.Group style={{ width: "18rem", margin: "auto" }} className="mb-3">
           <Form.Label>Projekti nimi</Form.Label>
@@ -93,7 +93,7 @@ function MaintainProjects() {
       <br />
       {projects.map((project, index) => (
         <div key={index} className="manage_project">
-          {index} <br />
+          <br /> 
           {project.name} <br />
           <hr />
           {project.info} <br />
@@ -107,8 +107,10 @@ function MaintainProjects() {
           <Button onClick={() => deleteProject(index)} variant="dark ">
             X
           </Button>
-        </div>
+          <br /> <br />
+        </div> 
       ))}
+      <br /> <br />
     </div>
   );
 }

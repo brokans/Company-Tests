@@ -26,12 +26,13 @@ function MaintainProducts() {
       {products.map((product, index) => (
         <div>
           <Card className="product-card" style={{ width: "18rem" }}>
-            <Card.Img variant="top" src={product.image} />
+            <Card.Img className="product-img" variant="top" src={product.image} />
+            <hr />
             <Card.Body>
-              <Card.Title>{product.name}</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+              <Card.Title className="product-title">{product.name}</Card.Title>
+              <hr />
+              <Card.Text className="product-description">
+                {product.description}
               </Card.Text>
               <Button variant="primary">Go somewhere</Button>
             </Card.Body>

@@ -1,14 +1,31 @@
+.App {
+  text-align: center;
+}
+
 .map {
   height: 400px;
   margin: 20px;
   border-radius: 14px;
 }
 
+
+
 .gold-btn {
   background-color: gold;
   color: black;
   box-shadow: 6px 4px 5px rgb(29, 29, 29);
 }
+
+.admin-buttons {
+  display: flex;
+  justify-content: center;
+  margin-right: 5px;
+}
+
+.admin-button {
+  margin: 2px;
+}
+
 
 /* HOMEPAGE */
 .homePage-img {
@@ -136,6 +153,7 @@
 /* MANAGE PROJECTS */
 .manage_project {
   margin: auto;
+  margin-bottom: 10px;
   width: 60%;
   border: 1px solid gray;
   border-radius: 5px;
@@ -146,11 +164,35 @@
 .product-card-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  margin: 0 2%;
-  width: 1000px;
-  margin: 5px 5px;
+  /* margin: 0 2%;
+  margin: 5px 5px; */
+  margin-right: 5px;
 }
 
 .product-card {
-  width: 20%;
+  height: 500px;
+  margin-bottom: 20px;
+  border: 1px solid red;
 }
+
+.product-img {
+  padding: 30px;
+  height: 200px;
+  width: auto;
+  transition: 0.5s;
+}
+
+.product-title {
+  height: 50px;
+
+}
+
+.product-description {
+  height: 80px
+}
+
+.product-img:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
+}
+

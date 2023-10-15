@@ -1,9 +1,9 @@
 import React from 'react'
 
-function HaldaBlogi() {
+function MaintainBlog() {
   return (
     <div>HaldaBlogi</div>
   )
 }
 
-export default HaldaBlogi
+export default MaintainBlog
