@@ -22,23 +22,31 @@ function MaintainProducts() {
   }
 
   return (
-    <div className="product-card-container">
-      {products.map((product, index) => (
-        <div>
-          <Card className="product-card" style={{ width: "18rem" }}>
-            <Card.Img className="product-img" variant="top" src={product.image} />
-            <hr />
-            <Card.Body>
-              <Card.Title className="product-title">{product.name}</Card.Title>
+    <div>
+      <ul className="product-card-container">
+        {products.map((product, index) => (
+          <div>
+            <Card className="product-card" style={{ width: "18rem" }}>
+              <Card.Img
+                className="product-img"
+                variant="top"
+                src={product.image}
+              />
               <hr />
-              <Card.Text className="product-description">
-                {product.description}
-              </Card.Text>
-              <Button variant="primary">Muuda</Button>
-            </Card.Body>
-          </Card>
-        </div>
-      ))}
+              <Card.Body>
+                <Card.Title className="product-title">
+                  {product.name}
+                </Card.Title>
+                <hr />
+                <Card.Text className="product-description">
+                  {product.description}
+                </Card.Text>
+                <Button variant="primary">Muuda</Button>
+              </Card.Body>
+            </Card>
+          </div>
+        ))}
+      </ul>
     </div>
   );
 }

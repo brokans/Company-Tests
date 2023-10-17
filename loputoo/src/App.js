@@ -18,6 +18,7 @@ import MaintainProducts from "./pages/admin/MaintainProducts";
 import EditLocations from "./pages/admin/EditLocation";
 import EditProject from "./pages/admin/EditProject";
 import CategoryPage from "./pages/global/CategoryPage";
+import Cart from "./pages/global/Cart";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
       <Link to="/contacts"></Link>
       <Link to="/locations"></Link>
       <Link to="/admin"></Link>
+      <Link to="/cart"></Link>
       <Link to="/arhitekuur"></Link>
       <Link to="/sisearhitekuur"></Link>
       <Link to="/store"></Link>
@@ -45,10 +47,11 @@ function App() {
         <Route path="/contacts" element={<Contact />} />
         <Route path="/locations" element={<Locations />} />
         <Route path="/admin" element={<AdminHome />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/arhitektuur" element={<Arhitektuur />} />
         <Route path="/sisearhitektuur" element={<Sisearhitektuur />} />
         <Route path="/store/" element={<Store />} />
-        <Route path="/store/category/:category" element={<CategoryPage />} />
+        <Route path="/category/:category" element={<CategoryPage />} />
         <Route path="/admin/maintain-locations" element={<MaintainLocations />} />
         <Route path="/admin/maintain-blog" element={<MaintainBlog />} />
         <Route path="/admin/maintain-courses" element={<MaintainCourses />} />

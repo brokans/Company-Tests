@@ -26,13 +26,12 @@ function Store() {
   const categoryNames = new Set(products.map(product => product.category))
 
 
-  console.log(categoryNames)
   return (
     
     <div className="d-grid gap-2">
         {Array.from(categoryNames).map((category, index) => (
         // <button key={index}>{category || "Uncategorized"}</button>
-        <Button as={Link} to={"/store/category/ " + category} key={index} variant="secondary" size="lg">
+        <Button as={Link} to={"/category/ " + category} key={index} variant="secondary" size="lg">
           {category || "Vali Kategooria"}
       </Button>
       ))}

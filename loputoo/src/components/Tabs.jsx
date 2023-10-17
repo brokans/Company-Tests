@@ -16,6 +16,11 @@ function Tabs() {
           Pood
         </Nav.Link>
       </Nav.Item>
+      <Nav.Item>
+        <Nav.Link href="/cart" eventKey="disabled">
+          Ostukorv
+        </Nav.Link>
+      </Nav.Item>
     </Nav>
     </div>
   )

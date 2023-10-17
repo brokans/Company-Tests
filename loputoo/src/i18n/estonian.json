@@ -1,0 +1,62 @@
+{
+  "nav": {
+    "admin": "admin",
+    "contact": "Kontaktid",
+    "shops": "Poed",
+    "login": "Sisselogimine",
+    "cart": "Ostukorv"
+  },
+
+  "admin": {
+    "maintain-categories": "Halda Kategooriad",
+    "maintain-shops": "Halda Poode",
+    "add-product": "Lisa Toode",
+    "maintain-products": "Halda Tooteid"
+  },
+
+  "edit-product": {
+    "edit-product-id": "Tühjaks IDks ei saa toote ID-d muuta!",
+    "edit-product-name": "Tühjaks nimetuseks ei saa toote nime muuta!",
+    "edit-product-upper": "Väikse tähega ei saa toote nime alustada!",
+    "edit-product-image": "Tühikuga ei saa pildi aadressi lisada!"
+  },
+
+  "total-products": "Toodete Koguarv:",
+  "pcs": "tk:",
+  "sort-a-z": "Sorteeri A-Z",
+  "sort-z-a": "Sorteeri Z-A",
+  "sort-price-asc": "Sorteeri Hind Kasvavalt",
+  "sort-price-desc": "Sorteeri Hind Kahanevalt",
+  "memory-bank": "Mälupank",
+  "usb-drive": "USB Mälupulk",
+  "tent": "Telk",
+  "camping": "Matkamine",
+  "addTo-cart": "Lisa Ostukorvi",
+  "details": "Üksikasjad",
+  "cart-empty": "Ostukorv on Tühi",
+  "shop": "Poodi",
+  "products-in-cart": "Toodet Ostukorvis",
+  "product-in-cart": "Toode Ostukorvis",
+  "empty-cart": "Tühjenda Ostukorv",
+  "subtotal": "Summa",
+  "delete": "Kustuta",
+  "edit": "Muuda",
+  "name": "Nimi:",
+  "price": "Hind:",
+  "image": "Pilt:",
+  "category": "Kategooria:",
+  "description": "Kirjeldus:",
+  "active": "Aktiivne:",
+  "add": "Lisa:",
+  "add-product-text": "Lisa Toode:",
+  "reset": "Lähtesta",
+  "products-found": "Toodet leitud.",
+  "not-unique": "ID ei ole unikaalne.",
+  "enter-product-id": "Palun sisestage toote ID!",
+  "no-exclamation": "Toodet ei saa lisada hüüumärgiga!",
+  "enter-product-name": "Palun sisestage toote nimi!",
+  "enter-product-upper": "Palun sisestage toote nimi suure algustähega!",
+  "product-entered": "Toode edukalt lisatud! ",
+  "product-deleted": "Toode edukalt kustutatud! ",
+  "product-added": "Toode edukalt ostukorvi lisatud! "
+}
