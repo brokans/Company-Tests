@@ -19,6 +19,8 @@ import EditLocations from "./pages/admin/EditLocation";
 import EditProject from "./pages/admin/EditProject";
 import CategoryPage from "./pages/global/CategoryPage";
 import Cart from "./pages/global/Cart";
+import EditProduct from "./pages/admin/EditProduct";
+import ProductPage from "./pages/global/ProductPage";
 
 function App() {
   return (
@@ -52,11 +54,13 @@ function App() {
         <Route path="/sisearhitektuur" element={<Sisearhitektuur />} />
         <Route path="/store/" element={<Store />} />
         <Route path="/category/:category" element={<CategoryPage />} />
+        <Route path="/product-page/:productId" element={<ProductPage />} />
         <Route path="/admin/maintain-locations" element={<MaintainLocations />} />
         <Route path="/admin/maintain-blog" element={<MaintainBlog />} />
         <Route path="/admin/maintain-courses" element={<MaintainCourses />} />
         <Route path="/admin/maintain-projects" element={<MaintainProjects />} />
         <Route path="/admin/maintain-products" element={<MaintainProducts />} />
+        <Route path="/admin/edit-product/:productId" element={ <EditProduct /> } />
         <Route path="/admin/maintain-locations/edit-location/:index" element={<EditLocations />} />
         <Route path="/admin/maintain-projects/edit-project/:index" element={<EditProject />} />
 

@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Spinner } from "react-bootstrap";
 import config from "../../data/config.json";
+import { Link } from "react-router-dom";
 
 function MaintainProducts() {
   const [products, setProducts] = useState([]);
@@ -41,7 +42,10 @@ function MaintainProducts() {
                 <Card.Text className="product-description">
                   {product.description}
                 </Card.Text>
-                <Button variant="primary">Muuda</Button>
+                <Card.Text className="product-description">
+                  {product.price + "€"}
+                </Card.Text>
+                <Button as={Link} to={"/admin/edit-product/" + product.id} variant="primary">Muuda</Button>
               </Card.Body>
             </Card>
           </div>

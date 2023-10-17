@@ -18,7 +18,7 @@ function HaldaAsukohtasid() {
       .then((res) => res.json())
       .then((json) => {
         uShops(json || [])
-        setLoading(true)
+        setLoading(false)
       });
   }, []);
 

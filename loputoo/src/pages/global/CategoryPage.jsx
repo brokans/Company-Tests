@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Spinner } from "react-bootstrap";
 import config from "../../data/config.json";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import SortButtons from "../../components/home/SortButtons";
 import Carouselles from "../../components/home/Carouselles";
 import { useContext } from "react";
@@ -99,7 +99,7 @@ function CategoryPage() {
                   </Card.Text>
                   <Card.Text className="product-description">
                     {product.price + "€"} <br />
-                    <Button variant="secondary">Üksikasjad</Button>
+                    <Button as={Link} to={"/product-page/" + product.id} variant="secondary">Üksikasjad</Button>{" "}
                     <Button
                       variant="secondary"
                       onClick={() => addToCart(product)}
