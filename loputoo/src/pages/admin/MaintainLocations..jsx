@@ -49,9 +49,9 @@ function HaldaAsukohtasid() {
     });
   }
 
-  // if (isLoading === true) {
-  //   return <Spinner />;
-  // }
+  if (isLoading === true) {
+    return <Spinner />;
+  }
 
   return (
     <div>

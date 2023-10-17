@@ -12,8 +12,8 @@ function Tabs() {
         <Nav.Link href="/sisearhitektuur" eventKey="link-1">Sisearhitektuur</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link href="/eriosad" eventKey="disabled">
-          Eriosad
+        <Nav.Link href="/store" eventKey="disabled">
+          Pood
         </Nav.Link>
       </Nav.Item>
     </Nav>

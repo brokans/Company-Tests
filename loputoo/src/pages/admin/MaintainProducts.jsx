@@ -34,7 +34,7 @@ function MaintainProducts() {
               <Card.Text className="product-description">
                 {product.description}
               </Card.Text>
-              <Button variant="primary">Go somewhere</Button>
+              <Button variant="primary">Muuda</Button>
             </Card.Body>
           </Card>
         </div>

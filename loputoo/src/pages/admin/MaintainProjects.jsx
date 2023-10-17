@@ -3,6 +3,7 @@ import config from "../../data/config.json";
 import { Button, Spinner } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
 
 function MaintainProjects() {
   const [projects, setProjects] = useState([]);
@@ -79,13 +80,18 @@ function MaintainProjects() {
           controlId="exampleForm.ControlTextarea1"
         >
           <Form.Label>Projekti info</Form.Label>
-          <Form.Control
-            ref={infoRef}
-            as="textarea"
-            type="text"
-            rows={5}
-          />
+          <Form.Control ref={infoRef} as="textarea" type="text" rows={5} />
         </Form.Group>
+        <Dropdown>
+          <Dropdown.Toggle variant="dark" id="dropdown-basic">
+            Dropdown Button
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item href="#/action-1">Arhitektuur</Dropdown.Item>
+            <Dropdown.Item href="#/action-2">Sisearhitektuur</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
         <Button onClick={addProject} variant="primary">
           Lisa
         </Button>
@@ -93,7 +99,7 @@ function MaintainProjects() {
       <br />
       {projects.map((project, index) => (
         <div key={index} className="manage_project">
-          <br /> 
+          <br />
           {project.name} <br />
           <hr />
           {project.info} <br />
@@ -104,11 +110,15 @@ function MaintainProjects() {
           >
             Muuda
           </Button>
-          <Button onClick={() => deleteProject(index)} variant="dark ">
+          <Button
+            onClick={() => deleteProject(index)}
+            variant="dark "
+            type="submit"
+          >
             X
           </Button>
           <br /> <br />
-        </div> 
+        </div>
       ))}
       <br /> <br />
     </div>

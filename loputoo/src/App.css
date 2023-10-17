@@ -172,12 +172,13 @@
 .product-card {
   height: 500px;
   margin-bottom: 20px;
-  border: 1px solid red;
+  box-shadow: 5px 5px 5px 2px gray;
+
 }
 
 .product-img {
   padding: 30px;
-  height: 200px;
+  height: 160px;
   width: auto;
   transition: 0.5s;
 }

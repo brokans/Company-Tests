@@ -9,7 +9,7 @@ import Locations from "./pages/global/Locations";
 import AdminHome from "./pages/admin/AdminHome";
 import Arhitektuur from "./pages/global/Arcitecture";
 import Sisearhitektuur from "./pages/global/InteriorArchitecture";
-import Eriosad from "./pages/global/Eriosad";
+import Store from "./pages/global/Store";
 import MaintainLocations from "./pages/admin/MaintainLocations.";
 import MaintainBlog from "./pages/admin/MaintainBlog";
 import MaintainCourses from "./pages/admin/MaintainCourses";
@@ -17,6 +17,7 @@ import MaintainProjects from "./pages/admin/MaintainProjects";
 import MaintainProducts from "./pages/admin/MaintainProducts";
 import EditLocations from "./pages/admin/EditLocation";
 import EditProject from "./pages/admin/EditProject";
+import CategoryPage from "./pages/global/CategoryPage";
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
       <Link to="/admin"></Link>
       <Link to="/arhitekuur"></Link>
       <Link to="/sisearhitekuur"></Link>
-      <Link to="/eriosad"></Link>
+      <Link to="/store"></Link>
       <Link to="/maintain-locations"></Link>
       <Link to="/maintain-blog"></Link>
       <Link to="/maintain-courses"></Link>
@@ -46,7 +47,8 @@ function App() {
         <Route path="/admin" element={<AdminHome />} />
         <Route path="/arhitektuur" element={<Arhitektuur />} />
         <Route path="/sisearhitektuur" element={<Sisearhitektuur />} />
-        <Route path="/eriosad" element={<Eriosad />} />
+        <Route path="/store/" element={<Store />} />
+        <Route path="/store/category/:category" element={<CategoryPage />} />
         <Route path="/admin/maintain-locations" element={<MaintainLocations />} />
         <Route path="/admin/maintain-blog" element={<MaintainBlog />} />
         <Route path="/admin/maintain-courses" element={<MaintainCourses />} />
