@@ -10,7 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 function AddProductModal(props) {
   const { productId } = useParams();
-
+  const [message, setMessage] = useState("");
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -41,18 +41,18 @@ function AddProductModal(props) {
   const add = () => {
     if (idRef.current.value === "") {
       // toasti tõlkimiseks tavalised sulud
-      toast.error(t("enter-product-id"));
+      setMessage("Palun sisesta ID number.");
       return;
     } else if (nameRef.current.value.includes("!")) {
-      toast.warning(t("no-exclamation"));
+      setMessage("Palun sisesta nimi ilma hüüumärgita!");
     } else if (nameRef.current.value === "") {
-      toast.error(t("enter-product-name"));
+      setMessage("Palun sisesta toote nimi.");
     } else if (
       nameRef.current.value[0].toLowerCase() === nameRef.current.value[0]
     ) {
-      toast.error(t("enter-product-upper"));
+      setMessage("Palun sisesta toote nimi suure algustöhega.");
     } else {
-      toast.success(t("product-entered") + idRef.current.value);
+      setMessage("Toode lisatud" + idRef.current.value);
       products.push({
         id: Number(idRef.current.value),
         image: imageRef.current.value,
@@ -142,7 +142,7 @@ function AddProductModal(props) {
               <Form.Label>Kategooria</Form.Label> <br />
               <select ref={categoryRef}>
                 {categories.map((category) => (
-                  <option key={category.name} value="">
+                  <option key={category.name} value={category.name}>
                     {category.name}
                   </option>
                 ))}

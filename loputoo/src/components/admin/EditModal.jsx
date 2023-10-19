@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
@@ -25,6 +25,25 @@ function EditModal(props) {
   const activeRef = useRef();
   const [idUnique, uIdUnique] = useState(true);
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+
+  const [selectedCategory, setSelectedCategory] = useState(
+    props.product.category
+  );
+
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
+
+  useEffect(() => {
+    fetch(config.categories)
+      .then((res) => res.json())
+      .then((json) => {
+        setCategories(json || [])
+        setLoading(false);
+      });
+  }, []);
 
   function edit() {
     if (idRef.current.value === "") {
@@ -48,7 +67,7 @@ function EditModal(props) {
       return;
     }
 
-    const index = products.findIndex(
+    const index = props.products.findIndex(
       (product) => product.id === Number(productId)
     );
     products[index] = {
@@ -62,21 +81,19 @@ function EditModal(props) {
     };
     fetch(config.products, {
       method: "PUT",
-      body: JSON.stringify(props.products),
+      body: JSON.stringify(products),
       // Ootab vastuse andmebaasist ära ja siis jätkab koodi lugemist
     });
   }
 
-  const categoryNames = new Set(
-    props.products.map((product) => product.category)
-  );
+  const categoryNames = new Set(products.map((product) => product.category));
 
   const checkIdUniqueness = () => {
     if (idRef.current.value === productId) {
       uIdUnique(true);
       return;
     }
-    const index = products.findIndex(
+    const index = props.products.findIndex(
       (product) => product.id === Number(idRef.current.value)
     );
     if (index === -1) {
@@ -86,7 +103,10 @@ function EditModal(props) {
     }
   };
 
-  console.log();
+  if (isLoading === true) {
+    return <Spinner/>
+  }
+
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
@@ -138,9 +158,15 @@ function EditModal(props) {
                 autoFocus
               />
               <Form.Label>Kategooria</Form.Label> <br />
-              <select ref={categoryRef} defaultValue={props.product.category}>
+              <select
+                ref={categoryRef}
+                value={selectedCategory}
+                onChange={handleCategoryChange}
+              >
                 {Array.from(categoryNames).map((category) => (
-                  <option key={category}>{category}</option>
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
                 ))}
               </select>
               <br />
@@ -160,6 +186,7 @@ function EditModal(props) {
           </Button>
           <Button
             variant="primary"
+            type="submit"
             onClick={() => {
               handleClose();
               edit();
