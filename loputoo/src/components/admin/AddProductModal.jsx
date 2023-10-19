@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
@@ -8,13 +8,14 @@ import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
 
-function EditModal(props) {
+function AddProductModal(props) {
   const { productId } = useParams();
 
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   const { t } = useTranslation();
   const idRef = useRef();
   const nameRef = useRef();
@@ -25,51 +26,57 @@ function EditModal(props) {
   const activeRef = useRef();
   const [idUnique, uIdUnique] = useState(true);
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
 
-  function edit() {
+  useEffect(() => {
+    fetch(config.products)
+      .then((res) => res.json())
+      .then((json) => setProducts(json || []));
+
+    fetch(config.categories)
+      .then((res) => res.json())
+      .then((json) => setCategories(json || []));
+  }, []);
+
+  const add = () => {
     if (idRef.current.value === "") {
-      toast.error(t("edit-product.edit-product-id"));
-      return; // funktsioon ei lähe edasi siit kohast
-    }
-
-    if (nameRef.current.value === "") {
-      toast.error(t("edit-product.edit-product-name"));
+      // toasti tõlkimiseks tavalised sulud
+      toast.error(t("enter-product-id"));
       return;
+    } else if (nameRef.current.value.includes("!")) {
+      toast.warning(t("no-exclamation"));
+    } else if (nameRef.current.value === "") {
+      toast.error(t("enter-product-name"));
+    } else if (
+      nameRef.current.value[0].toLowerCase() === nameRef.current.value[0]
+    ) {
+      toast.error(t("enter-product-upper"));
+    } else {
+      toast.success(t("product-entered") + idRef.current.value);
+      products.push({
+        id: Number(idRef.current.value),
+        image: imageRef.current.value,
+        name: nameRef.current.value,
+        price: Number(priceRef.current.value),
+        description: descriptionRef.current.value,
+        // kui tüüp muutub tuleb siin ka muuta
+        category: categoryRef.current.value,
+        active: activeRef.current.checked,
+      });
+      imageRef.current.value = "";
+      idRef.current.value = "";
+      nameRef.current.value = "";
+      priceRef.current.value = "";
+      descriptionRef.current.value = "";
+      categoryRef.current.value = "";
+      activeRef.current.value = false;
+
+      fetch(config.products, {
+        method: "PUT",
+        body: JSON.stringify(products),
+      });
     }
-
-    //  nameRef.current.value[0].toLowerCase() === nameRef.current.value[0]
-    if (nameRef.current.value[0].toUpperCase() !== nameRef.current.value[0]) {
-      toast.error(t("edit-product.edit-product-upper"));
-      return;
-    }
-
-    if (imageRef.current.value.includes(" ")) {
-      toast.error(t("edit-product.edit-product-image"));
-      return;
-    }
-
-    const index = products.findIndex(
-      (product) => product.id === Number(productId)
-    );
-    products[index] = {
-      id: Number(idRef.current.value),
-      image: imageRef.current.value,
-      name: nameRef.current.value,
-      price: Number(priceRef.current.value),
-      description: descriptionRef.current.value,
-      category: categoryRef.current.value,
-      active: activeRef.current.checked,
-    };
-    fetch(config.products, {
-      method: "PUT",
-      body: JSON.stringify(props.products),
-      // Ootab vastuse andmebaasist ära ja siis jätkab koodi lugemist
-    });
-  }
-
-  const categoryNames = new Set(
-    props.products.map((product) => product.category)
-  );
+  };
 
   const checkIdUniqueness = () => {
     if (idRef.current.value === productId) {
@@ -90,7 +97,7 @@ function EditModal(props) {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Muuda
+        Lisa Toode
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -106,49 +113,44 @@ function EditModal(props) {
                 ref={idRef}
                 onChange={checkIdUniqueness}
                 type="number"
-                defaultValue={props.product.id}
                 autoFocus
               />
               <Form.Label>Nimi</Form.Label>
               <Form.Control
                 ref={nameRef}
                 type="text"
-                defaultValue={props.product.name}
                 autoFocus
               />
               <Form.Label>Hind</Form.Label>
               <Form.Control
                 ref={priceRef}
                 type="text"
-                defaultValue={props.product.price + "€"}
                 autoFocus
               />
               <Form.Label>Pilt</Form.Label>
               <Form.Control
                 ref={imageRef}
                 type="text"
-                defaultValue={props.product.image}
                 autoFocus
               />
               <Form.Label>Kirjeldus</Form.Label>
               <Form.Control
                 ref={descriptionRef}
                 type="textarea"
-                defaultValue={props.product.description}
                 autoFocus
               />
               <Form.Label>Kategooria</Form.Label> <br />
-              <select ref={categoryRef} defaultValue={props.product.category}>
-                {Array.from(categoryNames).map((category) => (
-                  <option key={category}>{category}</option>
+              <select ref={categoryRef}>
+                {categories.map((category) => (
+                  <option key={category.name} value="">
+                    {category.name}
+                  </option>
                 ))}
-              </select>
-              <br />
+              </select> <br /> <br />
               <Form.Label>Aktiivsus</Form.Label>
               <br />
               <input
                 ref={activeRef}
-                defaultChecked={props.product.active}
                 type="checkbox"
               />
             </Form.Group>
@@ -156,16 +158,16 @@ function EditModal(props) {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Sule
+            Close
           </Button>
           <Button
             variant="primary"
             onClick={() => {
               handleClose();
-              edit();
+              add();
             }}
           >
-            Salvesta
+            Lisa
           </Button>
         </Modal.Footer>
       </Modal>
@@ -174,4 +176,4 @@ function EditModal(props) {
   );
 }
 
-export default EditModal;
+export default AddProductModal;

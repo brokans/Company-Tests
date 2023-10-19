@@ -5,7 +5,6 @@ import { Spinner } from "react-bootstrap";
 import config from "../../data/config.json";
 import { Link } from "react-router-dom";
 import EditModal from "../../components/admin/EditModal";
-import Pagination from "../../components/home/Pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronRight,
@@ -15,6 +14,7 @@ import {
   fa3,
   fa4
 } from "@fortawesome/free-solid-svg-icons";
+import AddProductModal from "../../components/admin/AddProductModal";
 
 
 function MaintainProducts() {
@@ -40,9 +40,9 @@ function MaintainProducts() {
       });
   }, []);
 
-  if (isLoading === true) {
-    return <Spinner />;
-  }
+  // if (isLoading === true) {
+  //   return <Spinner />;
+  // }
 
   const pageOne = () => {
     setCurrentPage(1);
@@ -88,6 +88,7 @@ function MaintainProducts() {
 
   return (
     <div>
+      < AddProductModal />
       <ul className="product-card-container">
         {currentItems.map((product, index) => (
           <div>
@@ -112,6 +113,7 @@ function MaintainProducts() {
                 <EditModal 
                   key={product.id}
                   product={product}
+                  products={products}
                 />
               </Card.Body>
             </Card>
@@ -164,7 +166,6 @@ function MaintainProducts() {
               onClick={() => incPage()}
             />{" "}
           </div>
-      < Pagination />
     </div>
   );
 }
