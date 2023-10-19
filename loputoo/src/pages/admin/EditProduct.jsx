@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import config from "../../data/config.json";
 import { ToastContainer, toast } from "react-toastify";
 import { Spinner } from "react-bootstrap";
+import Pagination from "../../components/home/Pagination";
 
 
 function EditProduct() {
