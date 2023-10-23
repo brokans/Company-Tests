@@ -17,8 +17,8 @@ function HaldaAsukohtasid() {
     fetch(config.shops)
       .then((res) => res.json())
       .then((json) => {
-        uShops(json || [])
-        setLoading(false)
+        uShops(json || []);
+        setLoading(false);
       });
   }, []);
 
@@ -38,8 +38,6 @@ function HaldaAsukohtasid() {
       body: JSON.stringify(shops),
     });
   }
-  // .push()
-  // {name: "", openTime: "",latitude: ""  longitude: ""};
   function deleteShop(index) {
     shops.splice(index, 1);
     uShops(shops.slice());

@@ -8,6 +8,11 @@
   border-radius: 14px;
 }
 
+body {
+  width: 100%;
+  background-color: rgb(228, 228, 228);
+}
+
 
 
 .gold-btn {
@@ -30,7 +35,7 @@
 /* HOMEPAGE */
 .homePage-img {
   width: 100%;
-  height: 100vh;
+  height: 90vh;
 }
 
 .homePageCards {
@@ -78,17 +83,40 @@
   background-image: url("https://thearchitectsdiary.com/wp-content/uploads/2023/02/Arch2O-architectural-sketching-10-architecture-sketching-tips-1.jpg");
   background-size: contain;
   background-size: cover;
-  background-position: 350px;
+  background-position: 600px;
   height: 100%;
   width: 100%;
   overflow: hidden;
 }
-.card-img2 {
+
+.card-img-s {
   position: absolute;
-  /* background-image: url("https://thearchitectsdiary.com/wp-content/uploads/2023/02/Arch2O-architectural-sketching-10-architecture-sketching-tips-1.jpg"); */
+  background-image: url("https://cdn4.vectorstock.com/i/1000x1000/85/83/online-store-symbol-e-shop-icon-with-hand-vector-24018583.jpg");
   background-size: contain;
   background-size: cover;
-  background-position: 0px;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.card-img-b {
+  position: absolute;
+  background-image: url("https://mailrelay.com/wp-content/uploads/2018/03/que-es-un-blog-1.png");
+  background-size: contain;
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.card-img2 {
+  position: absolute;
+  background-image: url("https://www.artemisiacollege.com/wp-content/uploads/2020/01/INTERIOR-DESIGN.jpg");
+  background-size: contain;
+  background-size: cover;
+  background-position: 500px;
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -125,8 +153,8 @@
 /* cards */
 
 .cardOne_A {
-  width: 430px;
-  height: 560px;
+  width: 330px;
+  height: 460px;
 }
 
 .card_img_A {
@@ -149,6 +177,24 @@
   color: black;
   border-bottom: none;
 }
+
+/* INTERIOR */
+.interior-projects-container {
+  display: flex;
+  justify-content: center;
+  
+}
+
+.interior-card-container {
+  width: 10%;
+  margin: 5px;
+}
+
+.interior-card {
+  width: 330px;
+  height: 460px;
+}
+
 
 /* MANAGE PROJECTS */
 .manage_project {
@@ -197,3 +243,80 @@
   transition: 0.5s;
 }
 
+/* PROJECT PAGE */
+.project-img-container {
+  display: block;
+  justify-content: center;
+}
+
+.project-img-main {
+  margin-bottom: 50px;
+  background-color: gray;
+}
+
+.project-img-small-container {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  width: 100%;
+  height: auto;
+}
+/* 198.75 x 132.5*/
+.project-img-small {
+  width: 15%;
+  height: 150px;
+  margin: 5px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.project-img-medium {
+  width: 25%;
+  height: 200px;
+  margin: 5px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.project-info {
+  text-align: left;
+  margin: auto;
+  width: 50%;
+}
+
+.project-card-title {
+  margin-top: 5px;
+  margin-left: 20px;
+  text-align: right;
+  font-size: 20px;
+  z-index: 5;
+  text-align: start !important;
+  color: black;
+  border-bottom: none;
+}
+
+.project-extra-container {
+  display: flex;
+  justify-content: center;
+}
+
+.extra-projects-container {
+  display: flex;
+  justify-content: center;
+
+  
+}
+
+.extra-card-container {
+  margin: 5px;
+  margin-bottom: 20px;
+}
+
+.extra-card {
+  width: 230px;
+  height: 360px;
+}
+
+.div-space {
+  height: 100px;
+}

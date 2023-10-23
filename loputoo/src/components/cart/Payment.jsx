@@ -5,14 +5,13 @@ function Payment(props) {
     function pay() {
         const url = "https://igw-demo.every-pay.com/api/v4/payments/oneoff";
         const paymentBody = {
-          api_username: "e36eb40f5ec87fa2", // turvaelement
-          account_name: "EUR3D1", // konto
-        //  Saadetud väärtus props'st võtan võtme sum, et failid oleks sünkroonis
-          amount: props.sum, // tellimuse summa
-          order_reference: Math.random() * 999999, // tellimuse number
-          nonce: "a9b7f7e7" + Math.random() * 999999 + new Date(), // turvaelement
-          timestamp: new Date(), // turvaelement
-          customer_url: "https://neti.ee", // kuhu tagasi suunatakse
+          api_username: "e36eb40f5ec87fa2",
+          account_name: "EUR3D1", 
+          amount: props.sum,
+          order_reference: Math.random() * 999999,
+          nonce: "a9b7f7e7" + Math.random() * 999999 + new Date(),
+          timestamp: new Date(), 
+          customer_url: "https://neti.ee",
         };
         const paymentHeader = {
           Authorization:

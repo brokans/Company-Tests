@@ -31,7 +31,7 @@ function EditLocation() {
   function edit() {
     if (nameRef.current.value === "") {
       toast.error("Palun sisesta asukoha nimi.");
-      return; // funktsioon ei lähe edasi siit kohast
+      return;
     }
 
     if (openTimeRef.current.value === "") {
@@ -39,7 +39,6 @@ function EditLocation() {
       return;
     }
 
-    //  nameRef.current.value[0].toLowerCase() === nameRef.current.value[0]
     if (nameRef.current.value[0].toUpperCase() !== nameRef.current.value[0]) {
       toast.error("Palun sisesta asukoha nimi suure algustähega.");
       return;
@@ -61,10 +60,8 @@ function EditLocation() {
     fetch(config.shops, {
       method: "PUT",
       body: JSON.stringify(locations),
-      // Ootab vastuse andmebaasist ära ja siis jätkab koodi lugemist
     }).then(() => navigate("/admin/maintain-locations"));
   }
-  // console.log(found.name);
 
   if (isLoading === true) {
     return <Spinner/>

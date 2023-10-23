@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import styles from "../../css/Cart.module.css";
-// import cartFromFile from "../../data/cart.json";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
@@ -87,7 +86,6 @@ function Cart() {
             <div className={styles.price}>
               {cartProduct.product.price.toFixed(2)}€
             </div>
-            {/* <button >+</button> */}
             <div className={styles.quantity}>
               <img
                 className={styles.button}
@@ -96,7 +94,6 @@ function Cart() {
                 alt=""
               />
               <div>{cartProduct.quantity} pcs</div>
-              {/* <button >-</button> */}
               <img
                 className={styles.button}
                 onClick={() => decreaseQuantity(index)}
@@ -107,7 +104,6 @@ function Cart() {
             <div className={styles.total}>
               {(cartProduct.product.price * cartProduct.quantity).toFixed(2)}€
             </div>
-            {/* <button >Remove Item</button> */}
             <img
               className={styles.button}
               onClick={() => removeItem(index)}
@@ -119,10 +115,8 @@ function Cart() {
         ))}
       </div>
       {cart.length > 0 && (
-        // sidekriipsu asemel kasutatakse kahte alakriipsu et html aksepteeriks
         <div className={styles.cart__bottom}>
           <ParcelMachine />
-          {/* Saadan Payment.jsx faili funktsiooni väärtuse */}
           <div className="total">
             {t("subtotal")} {summedPrice()}€{" "}
           </div>
@@ -133,7 +127,7 @@ function Cart() {
       {cart.length === 0 && (
         <>
           <div>{t("cart-empty")}</div>
-          <Link to="/">{t("shop")}</Link>
+          <Link to="/store">{t("shop")}</Link>
         </>
       )}
       <br />
@@ -145,7 +139,3 @@ function Cart() {
 
 export default Cart;
 
-// Cart.js lehel võimaldada ostukorvi sisu vaadata
-//      ostukorvist kustutada, ostukorvi tühjendada, ostukorvi kogusummat vaadata
-//      dünaamiline väljakuvamine (tühjendamine ja kogusumma peita kui tühi)
-//              kui tühi, siis öelda, et on tühi

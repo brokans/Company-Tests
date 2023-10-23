@@ -30,7 +30,6 @@ function Store() {
     
     <div className="d-grid gap-2">
         {Array.from(categoryNames).map((category, index) => (
-        // <button key={index}>{category || "Uncategorized"}</button>
         <Button as={Link} to={"/category/ " + category} key={index} variant="secondary" size="lg">
           {category || "Vali Kategooria"}
       </Button>

@@ -3,13 +3,19 @@ import config from "../../data/config.json";
 import { Button, Spinner } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
-import Dropdown from "react-bootstrap/Dropdown";
 
 function MaintainProjects() {
   const [projects, setProjects] = useState([]);
+  const [dbProjects, setDbProjects] = useState([]);
   const nameRef = useRef();
-  const photoRef = useRef();
+  const categoryRef = useRef();
+  const photoRefOne = useRef();
+  const photoRefTwo = useRef();
+  const photoRefThree = useRef();
+  const photoRefFour = useRef();
+  const photoRefFive = useRef();
   const infoRef = useRef();
+  const searchedRef = useRef();
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,6 +23,7 @@ function MaintainProjects() {
       .then((res) => res.json())
       .then((json) => {
         setProjects(json || []);
+        setDbProjects(json || []);
         setLoading(false);
       });
   }, []);
@@ -24,7 +31,12 @@ function MaintainProjects() {
   function addProject() {
     projects.push({
       name: nameRef.current.value,
-      photo: photoRef.current.value,
+      category: categoryRef.current.value,
+      photoOne: photoRefOne.current.value,
+      photoTwo: photoRefTwo.current.value,
+      photoThree: photoRefThree.current.value,
+      photoFour: photoRefFour.current.value,
+      photoFive: photoRefFive.current.value,
       info: infoRef.current.value,
     });
     setProjects(projects.slice());
@@ -44,12 +56,29 @@ function MaintainProjects() {
     });
   }
 
+  function searchFromProducts() {
+    const result = dbProjects.filter(
+      (project) =>
+      project.name
+          .toLowerCase()
+          .includes(searchedRef.current.value.toLowerCase()) ||
+          project.info
+          .toLowerCase()
+          .includes(searchedRef.current.value.toLowerCase()) ||
+          project.category.toString().includes(searchedRef.current.value)
+    );
+    setProjects(result);
+  }
+
   if (isLoading === true) {
     return <Spinner />;
   }
 
   return (
     <div>
+      <p>Otsi projekti:</p>
+      <input onChange={searchFromProducts} ref={searchedRef} type="text" placeholder="Projekti nimi" /> <br />
+      {}
       <br /> <br />
       <Form>
         <Form.Group style={{ width: "18rem", margin: "auto" }} className="mb-3">
@@ -61,13 +90,70 @@ function MaintainProjects() {
             name="from_name"
           />
         </Form.Group>
+        <Form.Group style={{ width: "18rem", margin: "auto" }} className="mb-3">
+          <Form.Label>Projekti kategooria</Form.Label>
+          <Form.Control
+            ref={categoryRef}
+            type="text"
+            placeholder="Kategooria"
+            name="from_name"
+          />
+        </Form.Group>
         <Form.Group
           style={{ width: "18rem", margin: "auto" }}
           controlId="formBasicEmail"
         >
-          <Form.Label>Foto</Form.Label>
+          <Form.Label>Foto 1</Form.Label>
           <Form.Control
-            ref={photoRef}
+            ref={photoRefOne}
+            className="mb-3"
+            type="text"
+            placeholder="photo URL"
+          />
+        </Form.Group>
+        <Form.Group
+          style={{ width: "18rem", margin: "auto" }}
+          controlId="formBasicEmail"
+        >
+        <Form.Label>Foto 2</Form.Label>
+          <Form.Control
+            ref={photoRefTwo}
+            className="mb-3"
+            type="text"
+            placeholder="photo URL"
+          />
+        </Form.Group>
+        <Form.Group
+          style={{ width: "18rem", margin: "auto" }}
+          controlId="formBasicEmail"
+        >
+        <Form.Label>Foto 3</Form.Label>
+          <Form.Control
+            ref={photoRefThree}
+            className="mb-3"
+            type="text"
+            placeholder="photo URL"
+          />
+        </Form.Group>
+        <Form.Group
+          style={{ width: "18rem", margin: "auto" }}
+          controlId="formBasicEmail"
+        >
+        <Form.Label>Foto 4</Form.Label>
+          <Form.Control
+            ref={photoRefFour}
+            className="mb-3"
+            type="text"
+            placeholder="photo URL"
+          />
+        </Form.Group>
+        <Form.Group
+          style={{ width: "18rem", margin: "auto" }}
+          controlId="formBasicEmail"
+        >
+        <Form.Label>Foto 5</Form.Label>
+          <Form.Control
+            ref={photoRefFive}
             className="mb-3"
             type="text"
             placeholder="photo URL"
@@ -75,23 +161,13 @@ function MaintainProjects() {
         </Form.Group>
 
         <Form.Group
-          style={{ width: "28rem", margin: "auto" }}
+          style={{ width: "40rem", margin: "auto" }}
           className="mb-3"
           controlId="exampleForm.ControlTextarea1"
         >
           <Form.Label>Projekti info</Form.Label>
-          <Form.Control ref={infoRef} as="textarea" type="text" rows={5} />
+          <Form.Control ref={infoRef} as="textarea" type="text" rows={7} />
         </Form.Group>
-        <Dropdown>
-          <Dropdown.Toggle variant="dark" id="dropdown-basic">
-            Dropdown Button
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu>
-            <Dropdown.Item href="#/action-1">Arhitektuur</Dropdown.Item>
-            <Dropdown.Item href="#/action-2">Sisearhitektuur</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
         <Button onClick={addProject} variant="primary">
           Lisa
         </Button>
@@ -101,6 +177,7 @@ function MaintainProjects() {
         <div key={index} className="manage_project">
           <br />
           {project.name} <br />
+          {project.category} <br />
           <hr />
           {project.info} <br />
           <hr />

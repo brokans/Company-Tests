@@ -19,9 +19,9 @@ function Cards() {
       </Card>
 
       <Card className="cardThree">
-        <a className="card-img3" href="/eriosad">
+        <a className="card-img3" href="/courses">
           <Card.Img variant="top" />
-          <Card.Title className="card_title">ERIOSAD</Card.Title>
+          <Card.Title className="card_title">KURSUSED</Card.Title>
         </a>
       </Card>
     </div>

@@ -11,7 +11,12 @@ function EditProject() {
   const [isLoading, setLoading] = useState(true);
 
   const nameRef = useRef();
-  const photoRef = useRef();
+  const categoryRef = useRef();
+  const photoRefOne = useRef();
+  const photoRefTwo = useRef();
+  const photoRefThree = useRef();
+  const photoRefFour = useRef();
+  const photoRefFive = useRef();
   const infoRef = useRef();
 
   const navigate = useNavigate();
@@ -43,15 +48,15 @@ function EditProject() {
       return;
     }
 
-    if (photoRef.current.value.includes(" ")) {
-      toast.error("Palun sisesta URL ilma tühikuteta.");
-      return;
-    }
-
     projects[index] = {
       name: nameRef.current.value,
+      category: categoryRef.current.value,
       info: infoRef.current.value,
-      photo: photoRef.current.value,
+      photoOne: photoRefOne.current.value,
+      photoTwo: photoRefTwo.current.value,
+      photoThree: photoRefThree.current.value,
+      photoFour: photoRefFour.current.value,
+      photoFive: photoRefFive.current.value,
     };
     fetch(config.projects, {
       method: "PUT",
@@ -77,14 +82,76 @@ function EditProject() {
             name="from_name"
           />
         </Form.Group>
+        <Form.Group style={{ width: "18rem", margin: "auto" }} className="mb-3">
+          <Form.Label>Projekti kategooria</Form.Label>
+          <Form.Control
+            ref={categoryRef}
+            defaultValue={found.category}
+            type="text"
+            placeholder="Kategooria"
+            name="from_name"
+          />
+        </Form.Group>
         <Form.Group
           style={{ width: "18rem", margin: "auto" }}
           controlId="formBasicEmail"
         >
-          <Form.Label>Foto</Form.Label>
+          <Form.Label>Foto 1</Form.Label>
           <Form.Control
-            ref={photoRef}
-            defaultValue={found.photo}
+            ref={photoRefOne}
+            defaultValue={found.photoOne}
+            className="mb-3"
+            type="text"
+            placeholder="photo URL"
+          />
+        </Form.Group>
+        <Form.Group
+          style={{ width: "18rem", margin: "auto" }}
+          controlId="formBasicEmail"
+        >
+          <Form.Label>Foto 2</Form.Label>
+          <Form.Control
+            ref={photoRefTwo}
+            defaultValue={found.photoTwo}
+            className="mb-3"
+            type="text"
+            placeholder="photo URL"
+          />
+        </Form.Group>
+        <Form.Group
+          style={{ width: "18rem", margin: "auto" }}
+          controlId="formBasicEmail"
+        >
+          <Form.Label>Foto 3</Form.Label>
+          <Form.Control
+            ref={photoRefThree}
+            defaultValue={found.photoThree}
+            className="mb-3"
+            type="text"
+            placeholder="photo URL"
+          />
+        </Form.Group>
+        <Form.Group
+          style={{ width: "18rem", margin: "auto" }}
+          controlId="formBasicEmail"
+        >
+          <Form.Label>Foto 4</Form.Label>
+          <Form.Control
+            ref={photoRefFour}
+            defaultValue={found.photoFour}
+            className="mb-3"
+            type="text"
+            placeholder="photo URL"
+          />
+        </Form.Group>
+        <Form.Group
+          style={{ width: "18rem", margin: "auto" }}
+          controlId="formBasicEmail"
+        >
+          <Form.Label>Foto 5</Form.Label>
+          <Form.Control
+            ref={photoRefFive}
+            defaultValue={found.photoFive}
             className="mb-3"
             type="text"
             placeholder="photo URL"
@@ -92,7 +159,7 @@ function EditProject() {
         </Form.Group>
 
         <Form.Group
-          style={{ width: "28rem", margin: "auto" }}
+          style={{ width: "40rem", margin: "auto"  }}
           className="mb-3"
           controlId="exampleForm.ControlTextarea1"
         >
@@ -102,7 +169,7 @@ function EditProject() {
             defaultValue={found.info}
             as="textarea"
             type="text"
-            rows={5}
+            rows={7}
           />
         </Form.Group>
         <Button onClick={edit} variant="primary">

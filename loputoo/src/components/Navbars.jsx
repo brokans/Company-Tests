@@ -21,7 +21,6 @@ function Navbars() {
             <Nav.Link href="/admin">admin</Nav.Link>
             <Nav.Link href="/contacts">Kontaktid</Nav.Link>
             <NavDropdown title="Ettevõttest" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Blogi</NavDropdown.Item>
               <NavDropdown.Item href="#action4">
                 Uudised
               </NavDropdown.Item>

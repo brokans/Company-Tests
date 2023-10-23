@@ -12,6 +12,9 @@ function Arhitektuur() {
         />
         <br /> <br />
         <ArchitectureCards />
+        <div className='div-space'>
+          {}
+        </div>
         <Footer />
     </div>
   )

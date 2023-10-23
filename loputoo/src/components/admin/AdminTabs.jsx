@@ -1,7 +1,6 @@
 import React from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import { Link } from "react-router-dom";
 import MaintainBlog from "../../pages/admin/MaintainBlog";
 import MaintainLocations from "../../pages/admin/MaintainLocations.";
 import MaintainCourses from "../../pages/admin/MaintainCourses";
@@ -15,7 +14,7 @@ function AdminTabs() {
         defaultActiveKey="home"
         transition={false}
         id="noanim-tab-example"
-        className="mb-3 justify-content-center" 
+        className="mb-3 justify-content-center"
       >
         <Tab eventKey="blog" title="Halda Blogi">
           <MaintainBlog />

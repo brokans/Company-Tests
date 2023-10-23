@@ -3,10 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import config from "../../data/config.json";
-import { Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { ToastContainer, toast } from "react-toastify";
 
 function AddProductModal(props) {
   const { productId } = useParams();
@@ -16,7 +13,6 @@ function AddProductModal(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const { t } = useTranslation();
   const idRef = useRef();
   const nameRef = useRef();
   const priceRef = useRef();
@@ -40,7 +36,6 @@ function AddProductModal(props) {
 
   const add = () => {
     if (idRef.current.value === "") {
-      // toasti tõlkimiseks tavalised sulud
       setMessage("Palun sisesta ID number.");
       return;
     } else if (nameRef.current.value.includes("!")) {
@@ -59,7 +54,6 @@ function AddProductModal(props) {
         name: nameRef.current.value,
         price: Number(priceRef.current.value),
         description: descriptionRef.current.value,
-        // kui tüüp muutub tuleb siin ka muuta
         category: categoryRef.current.value,
         active: activeRef.current.checked,
       });
@@ -96,6 +90,7 @@ function AddProductModal(props) {
   console.log();
   return (
     <>
+      {message}
       <Button variant="primary" onClick={handleShow}>
         Lisa Toode
       </Button>
@@ -116,29 +111,13 @@ function AddProductModal(props) {
                 autoFocus
               />
               <Form.Label>Nimi</Form.Label>
-              <Form.Control
-                ref={nameRef}
-                type="text"
-                autoFocus
-              />
+              <Form.Control ref={nameRef} type="text" autoFocus />
               <Form.Label>Hind</Form.Label>
-              <Form.Control
-                ref={priceRef}
-                type="text"
-                autoFocus
-              />
+              <Form.Control ref={priceRef} type="text" autoFocus />
               <Form.Label>Pilt</Form.Label>
-              <Form.Control
-                ref={imageRef}
-                type="text"
-                autoFocus
-              />
+              <Form.Control ref={imageRef} type="text" autoFocus />
               <Form.Label>Kirjeldus</Form.Label>
-              <Form.Control
-                ref={descriptionRef}
-                type="textarea"
-                autoFocus
-              />
+              <Form.Control ref={descriptionRef} type="textarea" autoFocus />
               <Form.Label>Kategooria</Form.Label> <br />
               <select ref={categoryRef}>
                 {categories.map((category) => (
@@ -146,13 +125,11 @@ function AddProductModal(props) {
                     {category.name}
                   </option>
                 ))}
-              </select> <br /> <br />
+              </select>{" "}
+              <br /> <br />
               <Form.Label>Aktiivsus</Form.Label>
               <br />
-              <input
-                ref={activeRef}
-                type="checkbox"
-              />
+              <input ref={activeRef} type="checkbox" />
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -171,7 +148,6 @@ function AddProductModal(props) {
           </Button>
         </Modal.Footer>
       </Modal>
-      <ToastContainer position="top-right" autoClose={2000} theme="dark" />
     </>
   );
 }

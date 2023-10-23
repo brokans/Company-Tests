@@ -1,10 +1,12 @@
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+
 import { Link, Route, Routes } from "react-router-dom";
 import { Contact } from "./pages/global/Contact";
+
 import HomePage from "./pages/global/HomePage";
 import Navbars from "./components/Navbars.jsx";
 import Tabs from "./components/Tabs";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Locations from "./pages/global/Locations";
 import AdminHome from "./pages/admin/AdminHome";
 import Arhitektuur from "./pages/global/Arcitecture";
@@ -19,8 +21,10 @@ import EditLocations from "./pages/admin/EditLocation";
 import EditProject from "./pages/admin/EditProject";
 import CategoryPage from "./pages/global/CategoryPage";
 import Cart from "./pages/global/Cart";
-import EditProduct from "./pages/admin/EditProduct";
 import ProductPage from "./pages/global/ProductPage";
+import Blog from "./pages/global/Blog";
+import ProjectPage from "./pages/global/Projectpage";
+import Courses from "./pages/global/Courses";
 
 function App() {
   return (
@@ -42,8 +46,6 @@ function App() {
       <Link to="/maintain-projekts"></Link>
       <Link to="/maintain-products"></Link>
 
-
-
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/contacts" element={<Contact />} />
@@ -52,18 +54,28 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/arhitektuur" element={<Arhitektuur />} />
         <Route path="/sisearhitektuur" element={<Sisearhitektuur />} />
-        <Route path="/store/" element={<Store />} />
+        <Route path="/courses" element={< Courses />} />
+        <Route path="/store" element={<Store />} />
+        <Route path="/blog" element={<Blog />} />
         <Route path="/category/:category" element={<CategoryPage />} />
         <Route path="/product-page/:productId" element={<ProductPage />} />
-        <Route path="/admin/maintain-locations" element={<MaintainLocations />} />
+        <Route path="/project-page/:name" element={<ProjectPage />} />
+        <Route
+          path="/admin/maintain-locations"
+          element={<MaintainLocations />}
+        />
         <Route path="/admin/maintain-blog" element={<MaintainBlog />} />
         <Route path="/admin/maintain-courses" element={<MaintainCourses />} />
         <Route path="/admin/maintain-projects" element={<MaintainProjects />} />
         <Route path="/admin/maintain-products" element={<MaintainProducts />} />
-        <Route path="/admin/edit-product/:productId" element={ <EditProduct /> } />
-        <Route path="/admin/maintain-locations/edit-location/:index" element={<EditLocations />} />
-        <Route path="/admin/maintain-projects/edit-project/:index" element={<EditProject />} />
-
+        <Route
+          path="/admin/maintain-locations/edit-location/:index"
+          element={<EditLocations />}
+        />
+        <Route
+          path="/admin/maintain-projects/edit-project/:index"
+          element={<EditProject />}
+        />
       </Routes>
     </div>
   );

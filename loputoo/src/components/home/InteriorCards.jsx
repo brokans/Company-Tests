@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import config from "../../data/config.json";
 
-function ArchitectureCards() {
+function InteriorCards() {
   const [projects, setProjects] = useState([]);
   const found = projects.filter(
-    (project) => project.category === "Arhitektuur"
+    (project) => project.category === "Sisearhitektuur"
   );
 
   useEffect(() => {
@@ -13,7 +13,6 @@ function ArchitectureCards() {
       .then((res) => res.json())
       .then((json) => setProjects(json || []));
   }, []);
-  console.log(found);
   return (
     <div className="interior-projects-container">
       {found.map((project, index) => (
@@ -37,4 +36,4 @@ function ArchitectureCards() {
   );
 }
 
-export default ArchitectureCards;
+export default InteriorCards;

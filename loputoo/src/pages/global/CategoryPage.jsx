@@ -12,7 +12,6 @@ import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 
-
 function CategoryPage() {
   const { setCartSum } = useContext(CartSumContext);
   const { t } = useTranslation();
@@ -41,15 +40,12 @@ function CategoryPage() {
 
   const addToCart = (clickedProduct) => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    // kas on ostukorvis
     const index = cart.findIndex(
       (cartProduct) => cartProduct.product.id === clickedProduct.id
     );
     if (index >= 0) {
-      // kui on ostukorvis siis quantity pluss üks
       cart[index].quantity++;
     } else {
-      // lisab ühe toote, hiljem lisab samale juurde, ei teki eraldi samasugust toodet
       cart.push({ quantity: 1, product: clickedProduct });
     }
 
@@ -59,20 +55,13 @@ function CategoryPage() {
         (sum = sum + cartProduct.product.price * cartProduct.quantity)
     );
     setCartSum(sum.toFixed(2));
-    // return sum.toFixed(2);
-    // Salvestab ostukorvi lokaalselt
+
     localStorage.setItem("cart", JSON.stringify(cart));
     toast.success(t("product-added"));
-
-    // 1. Võtame localStorage'st ostukorvi varasema seisu
-    // 2. Võtame LocalStorage'st saadud väärtuselt jutumärgi maha: JSON.parse()
-    // 3. Lisame saadud väärtusele juurde ühe toote: .push()
-    // 4. Paneme uuenenud väärtustele jutumärgid peale tagasi JSON.stringify()
-    // 5. Paneme localStorage'sse tagasi: LocalStorage.setItem()
   };
 
   return (
-    <div >
+    <div>
       <h2>Kategooria: {category}</h2>
       <Carouselles />
       <SortButtons products={products} setProducts={setProducts} />
@@ -99,7 +88,13 @@ function CategoryPage() {
                   </Card.Text>
                   <Card.Text className="product-description">
                     {product.price + "€"} <br />
-                    <Button as={Link} to={"/product-page/" + product.id} variant="secondary">Üksikasjad</Button>{" "}
+                    <Button
+                      as={Link}
+                      to={"/product-page/" + product.id}
+                      variant="secondary"
+                    >
+                      Üksikasjad
+                    </Button>{" "}
                     <Button
                       variant="secondary"
                       onClick={() => addToCart(product)}
@@ -114,7 +109,6 @@ function CategoryPage() {
         </ul>
       )}
       <ToastContainer position="bottom-left" autoClose={2000} theme="dark" />
-
     </div>
   );
 }

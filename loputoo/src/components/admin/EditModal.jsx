@@ -4,12 +4,12 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import config from "../../data/config.json";
 import { Spinner } from "react-bootstrap";
-import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function EditModal(props) {
-  const { productId } = useParams();
+  const { productId } = props;
 
   const [show, setShow] = useState(false);
 
@@ -27,6 +27,8 @@ function EditModal(props) {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [isChangesSaved, setIsChangesSaved] = useState(false);
+  const navigate = useNavigate();
 
   const [selectedCategory, setSelectedCategory] = useState(
     props.product.category
@@ -37,10 +39,19 @@ function EditModal(props) {
   };
 
   useEffect(() => {
+    fetch(config.products)
+      .then((res) => res.json())
+      .then((json) => {
+        setProducts(json || []);
+        setLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
     fetch(config.categories)
       .then((res) => res.json())
       .then((json) => {
-        setCategories(json || [])
+        setCategories(json || []);
         setLoading(false);
       });
   }, []);
@@ -48,7 +59,7 @@ function EditModal(props) {
   function edit() {
     if (idRef.current.value === "") {
       toast.error(t("edit-product.edit-product-id"));
-      return; // funktsioon ei lähe edasi siit kohast
+      return;
     }
 
     if (nameRef.current.value === "") {
@@ -56,7 +67,6 @@ function EditModal(props) {
       return;
     }
 
-    //  nameRef.current.value[0].toLowerCase() === nameRef.current.value[0]
     if (nameRef.current.value[0].toUpperCase() !== nameRef.current.value[0]) {
       toast.error(t("edit-product.edit-product-upper"));
       return;
@@ -67,14 +77,14 @@ function EditModal(props) {
       return;
     }
 
-    const index = props.products.findIndex(
+    const index = products.findIndex(
       (product) => product.id === Number(productId)
     );
     products[index] = {
       id: Number(idRef.current.value),
       image: imageRef.current.value,
       name: nameRef.current.value,
-      price: Number(priceRef.current.value),
+      price: priceRef.current.value,
       description: descriptionRef.current.value,
       category: categoryRef.current.value,
       active: activeRef.current.checked,
@@ -82,11 +92,15 @@ function EditModal(props) {
     fetch(config.products, {
       method: "PUT",
       body: JSON.stringify(products),
-      // Ootab vastuse andmebaasist ära ja siis jätkab koodi lugemist
+    }).then(() => {
+      setIsChangesSaved(true);
+      navigate("/admin/maintain-products");
     });
   }
 
-  const categoryNames = new Set(products.map((product) => product.category));
+  const categoryNames = new Set(
+    props.products.map((product) => product.category)
+  );
 
   const checkIdUniqueness = () => {
     if (idRef.current.value === productId) {
@@ -104,7 +118,7 @@ function EditModal(props) {
   };
 
   if (isLoading === true) {
-    return <Spinner/>
+    return <Spinner />;
   }
 
   return (
@@ -118,7 +132,7 @@ function EditModal(props) {
           <Modal.Title>Muuda Toodet</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form key={props.productId}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>ID</Form.Label>
               <Form.Control
@@ -140,7 +154,7 @@ function EditModal(props) {
               <Form.Control
                 ref={priceRef}
                 type="text"
-                defaultValue={props.product.price + "€"}
+                defaultValue={props.product.price}
                 autoFocus
               />
               <Form.Label>Pilt</Form.Label>
@@ -188,13 +202,14 @@ function EditModal(props) {
             variant="primary"
             type="submit"
             onClick={() => {
-              handleClose();
               edit();
+              handleClose();
             }}
           >
             Salvesta
           </Button>
         </Modal.Footer>
+        {isChangesSaved && <p>Changes have been saved successfully!</p>}
       </Modal>
       <ToastContainer position="top-right" autoClose={2000} theme="dark" />
     </>

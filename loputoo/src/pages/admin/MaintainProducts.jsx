@@ -42,9 +42,9 @@ function MaintainProducts() {
       });
   }, []);
 
-  // if (isLoading === true) {
-  //   return <Spinner />;
-  // }
+  if (isLoading === true) {
+    return <Spinner />;
+  }
 
   function deleteProduct(productId) {
     const index = dbProducts.findIndex(product => product.id === productId)
@@ -125,7 +125,7 @@ function MaintainProducts() {
         <AddProductModal />
         <MaintainCategoriesModal />
       </div>
-
+      <br />
       <ul className="product-card-container">
         {currentItems.map((product, index) => (
           <div>
@@ -154,7 +154,7 @@ function MaintainProducts() {
                 </Card.Text>
                 <div className="d-flex justify-content-center">
                   <EditModal
-                    key={product.id}
+                    productId={product.id}
                     product={product}
                     products={products}
                   />

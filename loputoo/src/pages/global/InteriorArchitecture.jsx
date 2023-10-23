@@ -1,5 +1,5 @@
 import React from 'react'
-import ArchitectureCards from '../../components/home/ArchitectureCards'
+import InteriorCards from '../../components/home/InteriorCards'
 import Footer from '../../components/home/Footer'
 
 function Sisearhitektuur() {
@@ -7,12 +7,16 @@ function Sisearhitektuur() {
     <div>
       <img
           className="homePage-img"
-          src="https://media.architecturaldigest.com/photos/56ba787ca254b168296a8fff/master/w_1920%2Cc_limit/zaha-hadid-architecture-01.jpg"
+          src="https://cdn-bnokp.nitrocdn.com/QNoeDwCprhACHQcnEmHgXDhDpbEOlRHH/assets/images/optimized/rev-0c79eba/www.decorilla.com/online-decorating/wp-content/uploads/2018/10/modern-interior-design-grey-living-room2.png"
           alt="pic"
         />
         <br /> <br />
-        <ArchitectureCards />
+        < InteriorCards />
+        <div className='div-space'>
+          {}
+        </div>
         <Footer />
+        
     </div>
   )
 }

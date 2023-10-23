@@ -7,8 +7,8 @@ import Modal from "react-bootstrap/Modal";
 
 function MaintainCategories() {
   const [categories, setCategories] = useState([]);
-  const categoryInputRef = useRef(); // Separate ref for the input
-  const categorySelectRef = useRef(); // Separate ref for the select
+  const categoryInputRef = useRef();
+  // const categorySelectRef = useRef();
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(null);
 
   const [show, setShow] = useState(false);
@@ -67,22 +67,26 @@ function MaintainCategories() {
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Kategooria nimi:</Form.Label>
               <Form.Control ref={categoryInputRef} type="text" autoFocus />
               <Form.Label>Kategooria</Form.Label>
               <br />
-                {categories.map((category, index) => (
-                  <div>
+              {categories.map((category, index) => (
+                <div>
                   {category.name}
                   <button onClick={() => deleteCategory(index)}>x</button>
                 </div>
-                ))}
+              ))}
+
               <br />
               <br />
             </Form.Group>
+            <button onClick={() => deleteCategory(selectedCategoryIndex)}>
+              Kustuta
+            </button>
           </Form>
         </Modal.Body>
         <Modal.Footer>
+          {" "}
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
