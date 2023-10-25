@@ -97,7 +97,7 @@ function AddProductModal(props) {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Muuda Toodet</Modal.Title>
+          <Modal.Title>Lisa Toode</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>

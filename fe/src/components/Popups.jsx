@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import "./Popup.css";
-// import shipmentInfoFromFile from "../data/Shipments.json";
 
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -24,7 +23,6 @@ function Popups(props) {
   const [shipments, setShipments] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
-  // const found = shipmentInfoFromFile[shipmentOrderNo];
   const found = shipments.find(
     (shipment) => shipment.id === Number(shipmentOrderNo)
   );
@@ -55,8 +53,13 @@ function Popups(props) {
     fetch(config.joogidDbUrl, {
       method: "PUT",
       body: JSON.stringify(shipments),
-      // peab navigetima then'ga muidu jõuab lehele enne kui on tabel uuenenud
-    }).then(() => navigate("/"));
+    })
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Error updating data:", error);
+      });
   }
 
   if (isLoading === true) {
@@ -159,12 +162,11 @@ function Popups(props) {
             </Col>
             <Col xs="auto"></Col>
           </Row>
-          <Button onClick={edit} type="submit" className="mb-2">
+          <Button onClick={edit} className="mb-2">
             Update
           </Button>
         </Form>
         <hr className="hr-bottom" />
-        {/* <button className='close-btn' onClick={() => props.setTrigger(false)}>close</button> */}
         {props.children}
       </div>
     </div>
