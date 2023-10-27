@@ -79,7 +79,7 @@ function TableArticle() {
           </div>
         </div>
         <div>{paragraphs}</div>
-        <div className="pink-btn">{found.tags}</div>
+        {found.tags.map((tag) => <div className="pink-btn">{tag}</div>)}
       </div>
     </div>
   );
