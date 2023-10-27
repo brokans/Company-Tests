@@ -226,9 +226,10 @@ function Tabel() {
             <thead>
               <tr>
                 <th data-field="eesnimi">
-                  <button onClick={() => sortNameAZ()} className="thead-btn">
+                  <button  className="thead-btn">
                     Eesnimi
                     <FontAwesomeIcon
+                      
                       className="up-arrow"
                       icon={faCaretUp}
                       size="lg"
@@ -237,6 +238,7 @@ function Tabel() {
                         color: "#ffffff",
                         cursor: upArrowDisabled ? "pointer" : "inactive",
                       }}
+                      onClick={() => sortAZ()}
                     />
                     <FontAwesomeIcon
                       className="down-arrow"
