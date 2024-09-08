@@ -1,4 +1,4 @@
 {
   "shipmentDataURL": "https://my.api.mockaroo.com/shipments.json?key=5e0b62d0",
-  "joogidDbUrl": "https://bros-webshop-default-rtdb.europe-west1.firebasedatabase.app/products.json"
+  "productsURL": "https://bros-webshop-default-rtdb.europe-west1.firebasedatabase.app/products.json"
 }

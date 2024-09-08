@@ -6,12 +6,9 @@ import { Contact } from "./pages/global/Contact";
 
 import HomePage from "./pages/global/HomePage";
 import Navbars from "./components/Navbars.jsx";
-import Tabs from "./components/Tabs";
-import Locations from "./pages/global/Locations";
 import AdminHome from "./pages/admin/AdminHome";
 import Arhitektuur from "./pages/global/Arcitecture";
 import Sisearhitektuur from "./pages/global/InteriorArchitecture";
-import Store from "./pages/global/Store";
 import MaintainLocations from "./pages/admin/MaintainLocations.";
 import MaintainBlog from "./pages/admin/MaintainBlog";
 import MaintainCourses from "./pages/admin/MaintainCourses";
@@ -20,26 +17,24 @@ import MaintainProducts from "./pages/admin/MaintainProducts";
 import EditLocations from "./pages/admin/EditLocation";
 import EditProject from "./pages/admin/EditProject";
 import CategoryPage from "./pages/global/CategoryPage";
-import Cart from "./pages/global/Cart";
 import ProductPage from "./pages/global/ProductPage";
 import Blog from "./pages/global/Blog";
 import ProjectPage from "./pages/global/Projectpage";
 import Courses from "./pages/global/Courses";
+import Portfolio from "./pages/global/Portfolio.jsx";
+import Services from "./pages/global/Services.jsx";
 
 function App() {
   return (
     <div className="App">
       <Navbars />
-      <Tabs />
-
       <Link to="/"></Link>
       <Link to="/contacts"></Link>
-      <Link to="/locations"></Link>
       <Link to="/admin"></Link>
-      <Link to="/cart"></Link>
-      <Link to="/arhitekuur"></Link>
-      <Link to="/sisearhitekuur"></Link>
-      <Link to="/store"></Link>
+      <Link to="/portfolio"></Link>
+      <Link to="/services"></Link>
+      <Link to="/arhitektuur"></Link>
+      <Link to="/sisearhitektuur"></Link>
       <Link to="/maintain-locations"></Link>
       <Link to="/maintain-blog"></Link>
       <Link to="/maintain-courses"></Link>
@@ -49,13 +44,12 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/contacts" element={<Contact />} />
-        <Route path="/locations" element={<Locations />} />
         <Route path="/admin" element={<AdminHome />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/portfolio" element={< Portfolio />} />
+        <Route path="/services" element={< Services />} />
         <Route path="/arhitektuur" element={<Arhitektuur />} />
         <Route path="/sisearhitektuur" element={<Sisearhitektuur />} />
         <Route path="/courses" element={< Courses />} />
-        <Route path="/store" element={<Store />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/category/:category" element={<CategoryPage />} />
         <Route path="/product-page/:productId" element={<ProductPage />} />

@@ -1,52 +1,16 @@
 import Table from "react-bootstrap/Table";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "../App.css";
 import { Link } from "react-router-dom";
-import config from "../data/config.json";
-import { Spinner } from "react-bootstrap";
+import ShipmentsFromFile from "../data/Shipments.json";
 
 function Homepage() {
-  const [shipments, setShipments] = useState([]);
-  const [buttonPopup, setButtonPopup] = useState(false);
-  const [selectedShipment, setSelectedShipment] = useState([]);
-  const [dbShipment, setDbShipment] = useState([]);
-  const [isLoading, setLoading] = useState(true);
+  const [shipments, setShipments] = useState(ShipmentsFromFile);
 
-  useEffect(() => {
-    fetch(config.joogidDbUrl)
-      .then((res) => res.json())
-      .then((json) => {
-        setShipments(json || []);
-        setDbShipment(json || []);
-        setLoading(false);
-      });
-  }, []);
-
-  const handleEditClick = (shipment) => {
-    setButtonPopup(true);
-    setSelectedShipment(shipment.id);
-  };
-
-  function deleteShipment(shipmentOrderNo) {
-    const index = dbShipment.findIndex(
-      (shipment) => shipment.id === shipmentOrderNo
-    );
-
-    if (index !== -1) {
-      dbShipment.splice(index, 1);
-
-      setShipments([...dbShipment]);
-
-      fetch(config.joogidDbUrl, {
-        method: "PUT",
-        body: JSON.stringify(dbShipment),
-      });
-    }
-  }
-
-  if (isLoading === true) {
-    return <Spinner />;
+  const deleteShipment = (index) => {
+    shipments.splice(index, 1);
+    setShipments(shipments.slice());
   }
 
   return (
@@ -83,19 +47,18 @@ function Homepage() {
             </tr>
           </thead>
           <tbody>
-            {shipments.map((shipment, orderNo) => (
-              <tr key={shipment.id}>
-                <td>{shipment.id}</td>
-                <td>{shipment.name}</td>
-                <td>{shipment.price}</td>
-                <td>{shipment.description}</td>
-                <td>{shipment.active}</td>
-                <td>{shipment.image}</td>
+            {shipments.map((shipment, index) => (
+              <tr key={shipment.orderNo}>
+                <td>{shipment.orderNo}</td>
+                <td>{shipment.date}</td>
+                <td>{shipment.customer}</td>
+                <td>{shipment.trackingNo}</td>
+                <td>{shipment.status}</td>
+                <td>{shipment.consignee}</td>
                 <td>
                   <span>
-                    <Link to={"./edit/" + shipment.id}>
+                    <Link key={index} to={"./edit/" + shipment.orderNo}>
                       <img
-                        onClick={() => handleEditClick(shipment)}
                         className="image"
                         src="/edit-button.png"
                         alt="Edit"
@@ -104,7 +67,7 @@ function Homepage() {
                   </span>
                   <span>
                     <img
-                      onClick={() => deleteShipment(shipment.id)}
+                      onClick={() => deleteShipment(shipment.orderNo)}
                       className="image"
                       src="/delete-button.png"
                       alt="Delete"

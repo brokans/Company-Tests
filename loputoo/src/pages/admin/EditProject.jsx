@@ -12,11 +12,12 @@ function EditProject() {
 
   const nameRef = useRef();
   const categoryRef = useRef();
-  const photoRefOne = useRef();
-  const photoRefTwo = useRef();
-  const photoRefThree = useRef();
-  const photoRefFour = useRef();
-  const photoRefFive = useRef();
+  const imgRefOne = useRef();
+  const imgRefTwo = useRef();
+  const imgRefThree = useRef();
+  const imgRefFour = useRef();
+  const imgRefFive = useRef();
+  const imgRefSix = useRef();
   const infoRef = useRef();
 
   const navigate = useNavigate();
@@ -52,11 +53,12 @@ function EditProject() {
       name: nameRef.current.value,
       category: categoryRef.current.value,
       info: infoRef.current.value,
-      photoOne: photoRefOne.current.value,
-      photoTwo: photoRefTwo.current.value,
-      photoThree: photoRefThree.current.value,
-      photoFour: photoRefFour.current.value,
-      photoFive: photoRefFive.current.value,
+      imgOne: imgRefOne.current.value,
+      imgTwo: imgRefTwo.current.value,
+      imgThree: imgRefThree.current.value,
+      imgFour: imgRefFour.current.value,
+      imgFive: imgRefFive.current.value,
+      imgSix: imgRefSix.current.value
     };
     fetch(config.projects, {
       method: "PUT",
@@ -98,11 +100,11 @@ function EditProject() {
         >
           <Form.Label>Foto 1</Form.Label>
           <Form.Control
-            ref={photoRefOne}
-            defaultValue={found.photoOne}
+            ref={imgRefOne}
+            defaultValue={found.imgOne}
             className="mb-3"
             type="text"
-            placeholder="photo URL"
+            placeholder="img URL"
           />
         </Form.Group>
         <Form.Group
@@ -111,11 +113,11 @@ function EditProject() {
         >
           <Form.Label>Foto 2</Form.Label>
           <Form.Control
-            ref={photoRefTwo}
-            defaultValue={found.photoTwo}
+            ref={imgRefTwo}
+            defaultValue={found.imgTwo}
             className="mb-3"
             type="text"
-            placeholder="photo URL"
+            placeholder="img URL"
           />
         </Form.Group>
         <Form.Group
@@ -124,11 +126,11 @@ function EditProject() {
         >
           <Form.Label>Foto 3</Form.Label>
           <Form.Control
-            ref={photoRefThree}
-            defaultValue={found.photoThree}
+            ref={imgRefThree}
+            defaultValue={found.imgThree}
             className="mb-3"
             type="text"
-            placeholder="photo URL"
+            placeholder="img URL"
           />
         </Form.Group>
         <Form.Group
@@ -137,11 +139,11 @@ function EditProject() {
         >
           <Form.Label>Foto 4</Form.Label>
           <Form.Control
-            ref={photoRefFour}
-            defaultValue={found.photoFour}
+            ref={imgRefFour}
+            defaultValue={found.imgFour}
             className="mb-3"
             type="text"
-            placeholder="photo URL"
+            placeholder="img URL"
           />
         </Form.Group>
         <Form.Group
@@ -150,11 +152,24 @@ function EditProject() {
         >
           <Form.Label>Foto 5</Form.Label>
           <Form.Control
-            ref={photoRefFive}
-            defaultValue={found.photoFive}
+            ref={imgRefFive}
+            defaultValue={found.imgFive}
             className="mb-3"
             type="text"
-            placeholder="photo URL"
+            placeholder="img URL"
+          />
+        </Form.Group>
+        <Form.Group
+          style={{ width: "18rem", margin: "auto" }}
+          controlId="formBasicEmail"
+        >
+          <Form.Label>Foto 6</Form.Label>
+          <Form.Control
+            ref={imgRefSix}
+            defaultValue={found.imgSix}
+            className="mb-3"
+            type="text"
+            placeholder="img URL"
           />
         </Form.Group>
 

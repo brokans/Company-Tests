@@ -2,15 +2,15 @@ import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function Navbars() {
     
   return (
     <div>
-      <Navbar style={{ background: 'none' }} expand="lg" className="bg-body-tertiary" >
+      
+      <Navbar style={{ background: 'none' }} expand="lg" className="bg-body-tertiary navigation" >
       <Container fluid>
-        <Navbar.Brand href="/">Line Stuudio</Navbar.Brand>
+        <Navbar.Brand href="/">Arhitektuuribüroo Perspektiiv</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -19,23 +19,25 @@ function Navbars() {
             navbarScroll
           >
             <Nav.Link href="/admin">admin</Nav.Link>
-            <Nav.Link href="/contacts">Kontaktid</Nav.Link>
-            <NavDropdown title="Ettevõttest" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action4">
-                Uudised
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Tule tööle
-              </NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link href="/locations" >
+            {/* <Nav.Link href="/locations" >
               Asukohad
-            </Nav.Link>
+            </Nav.Link> */}
           </Nav>
+          <Nav className="justify-content-end" activeKey="/home">
+        <Nav.Item>
+          <Nav.Link href="/portfolio">Portfoolio</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link href="/services">Teenused</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link href="/contacts">Kontaktid</Nav.Link>
+        </Nav.Item>
+      </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    
     </div>
   )
 }

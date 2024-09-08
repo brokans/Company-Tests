@@ -1,33 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import config from "../../data/config.json";
 import Carousel from "react-bootstrap/Carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function Carouselles() {
+  const [projects, setProjects] = useState([]);
+  const found = projects.filter(
+    (project) => project.category === "Arhitektuur"
+  );
+
+  useEffect(() => {
+    fetch(config.projects)
+      .then((res) => res.json())
+      .then((json) => setProjects(json || []));
+  }, []);
+
   return (
     <div>
       <Carousel fade>
-        <Carousel.Item>
-          <img src="https://picsum.photos/id/237/500/200" alt="" />
+        {found.map((project) => 
+        <Carousel.Item interval={project.photoOne ? 2000 : project.photoOne}>
+          {project.photoOne && < img src={project.photoOne} alt="" />}
           <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            <h3>{project.name}</h3>
           </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item>
-        <img src="https://picsum.photos/id/238/500/200" alt="" />
-          <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-        <img src="https://picsum.photos/id/239/500/200" alt="" />
-          <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
-          </Carousel.Caption>
-        </Carousel.Item>
+        )}
       </Carousel>
     </div>
   );

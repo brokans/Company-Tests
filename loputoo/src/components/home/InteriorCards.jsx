@@ -17,20 +17,20 @@ function InteriorCards() {
     <div className="interior-projects-container">
       {found.map((project, index) => (
         <div key={index}>
-          <br /> <br />
-          <div className="interior-card-container">
-            <Card className="interior-card">
-              <a
-                style={{ backgroundImage: `url(${project.photoOne})` }}
-                className="card-img2"
-                href={"/project-page/" + project.name}
-              >
-                <Card.Title className="card_title_A">{project.name}</Card.Title>
-                <Card.Img variant="top" />
-              </a>
+        <div className="extra-card-container">
+          <a className="noUnderline" href={"/project-page/" + project.name}>
+            <Card
+              href={"/project-page/" + project.name}
+              className="homePageCard"
+            >
+              <img src={project.photoTwo} alt="" />
+              <Card.Title className="project-card-title">
+                {project.name}
+              </Card.Title>
             </Card>
-          </div>
+          </a>
         </div>
+      </div>
       ))}
     </div>
   );

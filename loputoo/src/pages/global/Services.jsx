@@ -1,13 +1,10 @@
 import React, { useRef } from "react";
-import Cards from "../../components/home/Cards";
-import Footer from "../../components/home/Footer";
-import "../../App.css";
-import Carouselles from "../../components/home/Carouselles";
 import emailjs from "@emailjs/browser";
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Footer from "../../components/home/Footer";
 
-function HomePage() {
+function Services() {
   const form = useRef();
 
   const sendEmail = (e) => {
@@ -30,30 +27,16 @@ function HomePage() {
         }
       );
   };
-
   return (
     <div>
-      <div className="homePage-img-container">
-        <Carouselles className="homepage-carousel" />
-        <br /> <br />
-        <h1>Meie loome teekonna eesmärkideni</h1> <br /> <br />
-        <Cards />
-        <br /> <br />
-        <hr />
-        <div className="homepage-objects">
-          <a className="all-objects" href="/portfolio">
-            <h1>Vaata kõiki objekte</h1>
-          </a>
-        </div>
-        <div className="services">
-          <h2>TEENUSED</h2>
-          <p>Arhitektuurne projekteerimine</p>
-          <p>Sisearhitektuurne projekteerimine</p>
-          <p>3D visualiseerimine ja mudeldamine</p>
-          <p>Mood boardide loomine</p>
-          <p>Arhitektuurne analüüs äriideedele</p>
-        </div>
-        <h2>Võta ühendust!</h2> <br /> <br />
+      <div className="services-text">
+        <h4>Arhitektuurne projekteerimine</h4>
+        <h4>Sisearhitektuurne projekteerimine</h4>
+        <h4>3D visualiseerimine ja mudeldamine</h4>
+        <h4>Mood boardide loomine</h4>
+        <h4>Arhitektuurne analüüs äriideedele</h4>
+      </div>
+      <div className="email-form">
         <Form ref={form} onSubmit={sendEmail}>
           <Form.Group
             style={{ width: "18rem", margin: "auto" }}
@@ -81,17 +64,18 @@ function HomePage() {
             controlId="exampleForm.ControlTextarea1"
           >
             <Form.Label>Räägi oma ideest!</Form.Label>
-            <Form.Control as="textarea" rows={5} name="message" />
+            <Form.Control as="textarea" rows={3} name="message" />
           </Form.Group>
           <Button variant="primary" type="submit">
             Saada
           </Button>
         </Form>
-        <br /> <br />
+      </div>
+      <div className="footer">
         <Footer />
       </div>
     </div>
   );
 }
 
-export default HomePage;
+export default Services;

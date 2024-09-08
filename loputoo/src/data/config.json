@@ -3,5 +3,6 @@
     "categories": "https://bros-webshop-default-rtdb.europe-west1.firebasedatabase.app/categories.json",
     "shops": "https://bros-webshop-default-rtdb.europe-west1.firebasedatabase.app/shops.json",
     "projects": "https://bros-webshop-default-rtdb.europe-west1.firebasedatabase.app/projects.json",
-    "interior": "https://bros-webshop-default-rtdb.europe-west1.firebasedatabase.app/interior.json"
+    "interior": "https://bros-webshop-default-rtdb.europe-west1.firebasedatabase.app/interior.json",
+    "courses": "https://bros-webshop-default-rtdb.europe-west1.firebasedatabase.app/courses.json"
 }

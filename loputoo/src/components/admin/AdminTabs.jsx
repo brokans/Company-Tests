@@ -1,11 +1,10 @@
 import React from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import MaintainBlog from "../../pages/admin/MaintainBlog";
+// import MaintainBlog from "../../pages/admin/MaintainBlog";
 import MaintainLocations from "../../pages/admin/MaintainLocations.";
 import MaintainCourses from "../../pages/admin/MaintainCourses";
 import MaintainProjects from "../../pages/admin/MaintainProjects";
-import MaintainProducts from "../../pages/admin/MaintainProducts";
 
 function AdminTabs() {
   return (
@@ -16,18 +15,18 @@ function AdminTabs() {
         id="noanim-tab-example"
         className="mb-3 justify-content-center"
       >
-        <Tab eventKey="blog" title="Halda Blogi">
+        {/* <Tab eventKey="blog" title="Halda Blogi">
           <MaintainBlog />
-        </Tab>
+        </Tab> */}
         <Tab eventKey="location" title="Halda Asukohtasid">
           <MaintainLocations />
         </Tab>
         <Tab eventKey="courses" title="Halda Kursuseid">
           <MaintainCourses />
         </Tab>
-        <Tab eventKey="products" title="Halda Tooteid">
+        {/* <Tab eventKey="products" title="Halda Tooteid">
           <MaintainProducts />
-        </Tab>
+        </Tab> */}
         <Tab eventKey="projects" title="Halda Projekte">
           <MaintainProjects />
         </Tab>

@@ -1,37 +1,32 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import Nav from 'react-bootstrap/Nav';
-import { AuthContext } from '../store/AuthContext';
-import { CartSumContext } from "./../store/CartSumContext";
 
 
 
 function Tabs() {
-  const { cartSum } = useContext(CartSumContext);
-  const { loggedIn, setLoggedIn } = useContext(AuthContext);
-
 
   return (
     <div>
-        <Nav variant="tabs" defaultActiveKey="/home">
+        <Nav variant="tabs" defaultActiveKey="/home" className='justify-content-center bg-body-tertiary '>
       <Nav.Item>
-        <Nav.Link href="/arhitektuur">Arhitektuur</Nav.Link>
+        <Nav.Link className='text-secondary' href="/arhitektuur">Arhitektuur</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link href="/sisearhitektuur" eventKey="link-1">Sisearhitektuur</Nav.Link>
+        <Nav.Link className='text-secondary' href="/sisearhitektuur" eventKey="link-1">Sisearhitektuur</Nav.Link>
       </Nav.Item>
-      <Nav.Item>
+      {/* <Nav.Item>
         <Nav.Link href="/store" eventKey="disabled">
           Pood
         </Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
+      </Nav.Item> */}
+      {/* <Nav.Item>
         <Nav.Link href="/cart" eventKey="disabled">
           Ostukorv {" "}
           {cartSum + "€"}
         </Nav.Link>
         
         
-      </Nav.Item>
+      </Nav.Item> */}
     </Nav>
     </div>
   )

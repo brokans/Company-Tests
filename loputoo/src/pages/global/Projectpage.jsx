@@ -10,96 +10,75 @@ function ProjectPage() {
   const [projects, setProjects] = useState([]);
   const found = projects.filter((project) => project.name === name);
   const foundInterior = projects.filter(
-    (project) => project.category === "Sisearhitektuur"
+    (project) => project.category === "Arhitektuur"
   );
+  console.log(found);
 
   useEffect(() => {
     fetch(config.projects)
       .then((res) => res.json())
       .then((json) => setProjects(json || []));
   }, []);
-  console.log(found);
+
   return (
     <div>
       {found.map((project, index) => (
         <div className="project-img-container" key={index}>
-          <div className="project-img-main">
-            {project.photoOne && <img src={project.photoOne} alt="" />}
-          </div>
           <h1>{project.name}</h1>
-          <Carousel fade interval={project.photoTwo ? 3000 : null}>
+          <Carousel fade interval={2000}>
+            {project.photoOne && (
+              <Carousel.Item>
+                <img src={project.photoOne} alt="" />
+              </Carousel.Item>
+            )}
+            {project.photoTwo && (
               <Carousel.Item>
                 <img src={project.photoTwo} alt="" />
-                <Carousel.Caption>
-                </Carousel.Caption>
               </Carousel.Item>
+            )}
+            {project.photoThree && (
               <Carousel.Item>
                 <img src={project.photoThree} alt="" />
-                <Carousel.Caption>
-                </Carousel.Caption>
               </Carousel.Item>
+            )}
+            {project.photoFour && (
               <Carousel.Item>
-                <img src={project.photoThree} alt="" />
-                <Carousel.Caption>
-                </Carousel.Caption>
+                <img src={project.photoFour} alt="" />
               </Carousel.Item>
-
-            <Carousel.Item>
-              <img src={project.photoFour} alt="" />
-              <Carousel.Caption>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img src={project.photoFive} alt="" />
-              <Carousel.Caption>
-              </Carousel.Caption>
-            </Carousel.Item>
+            )}
+            {project.photoFive && (
+              <Carousel.Item>
+                <img src={project.photoFive} alt="" />
+                <Carousel.Caption></Carousel.Caption>
+              </Carousel.Item>
+            )}
+            {project.photoSix && (
+              <Carousel.Item>
+                <img src={project.photoSix} alt="" />
+                <Carousel.Caption></Carousel.Caption>
+              </Carousel.Item>
+            )}
           </Carousel>
           <br />
           <div className="project-img-small-container">
             {project.photoTwo && (
               <Card className="project-img-small">
-                <a
-                  style={{ backgroundImage: `url(${project.photoTwo})` }}
-                  className="card-img2"
-                  href={"/project-page/" + project.name}
-                >
-                  {}
-                </a>
+                <img src={project.photoTwo} alt="" />
               </Card>
             )}
             {project.photoThree && (
               <Card className="project-img-small">
-                <a
-                  style={{ backgroundImage: `url(${project.photoThree})` }}
-                  className="card-img2"
-                  href={"/project-page/" + project.name}
-                >
-                  {}
-                </a>
+                <img src={project.photoThree} alt="" />
               </Card>
             )}
             {project.photoFour && (
               <Card className="project-img-small">
-                <a
-                  style={{ backgroundImage: `url(${project.photoFour})` }}
-                  className="card-img2"
-                  href={"/project-page/" + project.name}
-                >
-                  {}
-                </a>
+                <img src={project.photoFour} alt="" />
               </Card>
             )}
             {project.photoFive && (
               <Card className="project-img-small">
-                <a
-                  style={{ backgroundImage: `url(${project.photoFive})` }}
-                  className="card-img2"
-                  href={"/project-page/" + project.name}
-                  alt="project image"
-                >
-                  {}
-                </a>
+                <img src={project.photoFive} alt="" />
               </Card>
             )}
           </div>
@@ -114,25 +93,25 @@ function ProjectPage() {
         {foundInterior.map((project, index) => (
           <div key={index}>
             <div className="extra-card-container">
-              <Card className="extra-card">
-                <a
-                  style={{ backgroundImage: `url(${project.photoTwo})` }}
-                  className="card-img2"
+              <a className="noUnderline" href={"/project-page/" + project.name}>
+                <Card
                   href={"/project-page/" + project.name}
+                  className="homePageCard"
                 >
-                  {}
-                </a>
-                <Card.Title className="project-card-title">
-                  {project.name}
-                </Card.Title>
-              </Card>
+                  <img src={project.photoTwo} alt="" />
+                  <Card.Title className="project-card-title">
+                    {project.name}
+                  </Card.Title>
+                </Card>
+              </a>
             </div>
           </div>
         ))}
         <br />
       </div>
-      <div className="div-space">{}</div>
-      <Footer />
+      <div className="footer">
+        <Footer />
+      </div>
     </div>
   );
 }

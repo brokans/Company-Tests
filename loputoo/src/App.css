@@ -4,19 +4,32 @@
 
 .map {
   height: 400px;
-  margin: 20px;
+  width: 60%;
+  margin: auto;
+  margin-top: 30px;
   border-radius: 14px;
+  box-shadow: 5px 5px 5px 5px gray;
+}
+
+.map-btn {
+  margin-top: 60px;
 }
 
 body {
   width: 100%;
-  background-color: rgb(228, 228, 228);
+  background-color: white;
 }
 
+Nav.Link {
+  text-decoration: underline;
+}
 
+.noUnderline {
+  text-decoration: none;
+}
 
 .gold-btn {
-  background-color: gold;
+  background-color: lightgray;
   color: black;
   box-shadow: 6px 4px 5px rgb(29, 29, 29);
 }
@@ -31,170 +44,101 @@ body {
   margin: 2px;
 }
 
-
 /* HOMEPAGE */
-.homePage-img {
+
+
+.homePage-img-container {
+  display: block;
   width: 100%;
-  height: 90vh;
+  height: 60vh;
 }
 
 .homePageCards {
-  width: 70%;
+  width: 100%;
+  margin: auto;
+  height: auto;
+}
+
+.homepage-objects {
+  width: 60%;
   margin: auto;
 }
 
-.homePageSquareCards {
-  width: 70%;
+.all-objects {
+  text-align: left;
+  text-decoration: none;
+  color: black;
+}
+
+.all-objects:hover {
+  text-decoration: underline;
+}
+
+.services {
+  width: 60%;
   margin: auto;
+  text-align: left;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
-/* square cards */
-.cardOne_square {
-  margin-top: 10px;
-  width: 50%;
-  min-height: 835px;
+.services p {
+  text-decoration: underline;
+  font-size: 1.6em;
 }
 
-.cardTwo_square {
-  margin-top: 10px;
+/* CONTACTS */
+.contact-img {
   width: 50%;
-  min-height: 835px;
-  margin-left: 10px;
+  height: auto;
+  margin: auto;
+  margin-top: 40px;
+  box-shadow: 5px 5px 5px 5px gray;
+}
+
+.office-img {
+  width: 100%;
+  
 }
 
 /* CARDS */
-.cardOne {
-  width: 33.333%;
-  min-height: 835px;
-}
-.cardTwo {
-  width: 33.333%;
-  min-height: 835px;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-.cardThree {
-  width: 33.333%;
-  min-height: 835px;
-}
-
-.card-img {
-  position: absolute;
-  background-image: url("https://thearchitectsdiary.com/wp-content/uploads/2023/02/Arch2O-architectural-sketching-10-architecture-sketching-tips-1.jpg");
-  background-size: contain;
-  background-size: cover;
-  background-position: 600px;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-}
-
-.card-img-s {
-  position: absolute;
-  background-image: url("https://cdn4.vectorstock.com/i/1000x1000/85/83/online-store-symbol-e-shop-icon-with-hand-vector-24018583.jpg");
-  background-size: contain;
-  background-size: cover;
-  background-position: center;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-}
-
-.card-img-b {
-  position: absolute;
-  background-image: url("https://mailrelay.com/wp-content/uploads/2018/03/que-es-un-blog-1.png");
-  background-size: contain;
-  background-size: cover;
-  background-position: center;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-}
-
-.card-img2 {
-  position: absolute;
-  background-image: url("https://www.artemisiacollege.com/wp-content/uploads/2020/01/INTERIOR-DESIGN.jpg");
-  background-size: contain;
-  background-size: cover;
-  background-position: 500px;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-}
-.card-img3 {
-  position: absolute;
-  background-image: url("https://thearchitectsdiary.com/wp-content/uploads/2023/02/Arch2O-architectural-sketching-10-architecture-sketching-tips-1.jpg");
-  background-size: contain;
-  background-size: cover;
-  background-position: -170px;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
+.homePageCard {
+  width: 400px;
+  height: auto;
 }
 
 .card_title {
   font-size: 26px;
-  color: rgba(0, 0, 0, 0.58);
+  color: rgba(0, 0, 0, 0.993);
   z-index: 5;
-  writing-mode: vertical-rl;
+  writing-mode: vertical;
   text-orientation: upright;
   text-align: start !important;
 }
 
 /* ARHITEKTUUR */
-
-.arhitektuur-big-img {
-  background-image: url("https://www.wbcsd.org/var/site/storage/images/overview/panorama/articles/at-one-with-nature-the-philosophy-of-organic-architecture/158268-1-eng-GB/At-one-with-nature-the-philosophy-of-organic-architecture_i1140.jpg");
-  height: 640px;
-  width: 1140px;
-  margin: auto;
-}
-
-/* cards */
-
-.cardOne_A {
-  width: 330px;
-  height: 460px;
-}
-
-.card_img_A {
-  position: absolute;
-  /* background-image: url("https://thearchitectsdiary.com/wp-content/uploads/2023/02/Arch2O-architectural-sketching-10-architecture-sketching-tips-1.jpg"); */
-  background-size: contain;
-  background-size: cover;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-}
-
-.card_title_A {
-  margin-top: 20px;
-  margin-left: 20px;
-  text-align: right;
-  font-size: 26px;
-  z-index: 5;
-  text-align: start !important;
-  color: black;
-  border-bottom: none;
+.architecture-img-container {
+  width: auto;
+  background-color: lightgrey;
 }
 
 /* INTERIOR */
 .interior-projects-container {
   display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  margin: auto;
+  margin-bottom: 40px;
   justify-content: center;
-  
 }
 
 .interior-card-container {
-  width: 10%;
+  width: 33%;
+  height: auto;
   margin: 5px;
 }
-
-.interior-card {
-  width: 330px;
-  height: 460px;
-}
-
 
 /* MANAGE PROJECTS */
 .manage_project {
@@ -219,7 +163,6 @@ body {
   height: 500px;
   margin-bottom: 20px;
   box-shadow: 5px 5px 5px 2px gray;
-
 }
 
 .product-img {
@@ -231,11 +174,10 @@ body {
 
 .product-title {
   height: 50px;
-
 }
 
 .product-description {
-  height: 60px
+  height: 60px;
 }
 
 .product-img:hover {
@@ -249,11 +191,6 @@ body {
   justify-content: center;
 }
 
-.project-img-main {
-  margin-bottom: 50px;
-  background-color: gray;
-}
-
 .project-img-small-container {
   display: flex;
   justify-content: center;
@@ -263,16 +200,8 @@ body {
 }
 /* 198.75 x 132.5*/
 .project-img-small {
-  width: 15%;
-  height: 150px;
-  margin: 5px;
-  margin-bottom: 30px;
-  margin-top: 30px;
-}
-
-.project-img-medium {
-  width: 25%;
-  height: 200px;
+  width: 20%;
+  height: auto;
   margin: 5px;
   margin-bottom: 30px;
   margin-top: 30px;
@@ -297,26 +226,30 @@ body {
 
 .project-extra-container {
   display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: auto;
+  margin: auto;
   justify-content: center;
-}
-
-.extra-projects-container {
-  display: flex;
-  justify-content: center;
-
-  
 }
 
 .extra-card-container {
+  width: auto;
+  height: auto;
   margin: 5px;
   margin-bottom: 20px;
 }
 
-.extra-card {
-  width: 230px;
-  height: 360px;
+.email-form {
+  margin-top: 120px;
+  margin-bottom: 250px;
+}
+/* SERVICES */
+
+.services-text {
+  margin-top: 60px;
 }
 
-.div-space {
-  height: 100px;
+.footer {
+  margin-top: 200px;
 }

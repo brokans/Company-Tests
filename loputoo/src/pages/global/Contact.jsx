@@ -1,62 +1,72 @@
-import React, { useRef } from "react";
-import emailjs from "@emailjs/browser";
+import React, { useEffect, useRef, useState } from "react";
+import Map from "../../components/Map";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
+import config from "../../data/config.json";
+import Footer from "../../components/home/Footer";
 
 export const Contact = () => {
-  const form = useRef();
+  const [shops, uShops] = useState([]);
 
-  const sendEmail = (e) => {
-    e.preventDefault();
+  const [coordinaates, setCoordinates] = useState({
+    lngLat: [57.7731, 26.0367],
+    zoom: 11,
+  });
 
-    emailjs
-      .sendForm(
-        "service_zoynupw",
-        "template_akogdbi",
-        form.current,
-        "PXhCZSpIJP4mL_Cfv"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          form.current.reset();
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-  };
+  useEffect(() => {
+    fetch(config.shops)
+      .then((res) => res.json())
+      .then((json) => uShops(json || []));
+  }, []);
 
   return (
-    <Form ref={form} onSubmit={sendEmail}>
-      <Form.Group style={{ width: "18rem", margin: "auto" }} className="mb-3">
-        <Form.Label>Nimi</Form.Label>
-        <Form.Control type="text" placeholder="Nimi" name="from_name" />
-      </Form.Group>
-      <Form.Group
-        style={{ width: "18rem", margin: "auto" }}
-        controlId="formBasicEmail"
-      >
-        <Form.Label>Emaili aadress</Form.Label>
-        <Form.Control
-          className="mb-3"
-          type="email"
-          placeholder="Email"
-          name="from_email"
+    <div className="locations">
+      <div className="contact-img">
+        <img
+          className="office-img"
+          src="https://i.postimg.cc/T3FQM4B9/Kontor.png"
+          alt=""
         />
-      </Form.Group>
+      </div>
+      <div>
+        <br />
+        {/* <Button
+          onClick={() => setCoordinates({ lngLat: [58.8882, 25.523], zoom: 7 })}
+          className="gold-btn"
+          variant="dark"
+        >
+          Kõik Stuudiod
+        </Button>{" "} */}
+        {/* <Button
+          onClick={() =>
+            setCoordinates({ lngLat: [59.4378, 24.7574], zoom: 11 })
+          }
+          className="gold-btn"
+          variant="dark"
+        >
+          Kõik Tallinna Stuudiod
+        </Button> */}
+      </div>
 
-      <Form.Group
-        style={{ width: "28rem", margin: "auto" }}
-        className="mb-3"
-        controlId="exampleForm.ControlTextarea1"
-      >
-        <Form.Label>Räägi oma ideest!</Form.Label>
-        <Form.Control as="textarea" rows={3} name="message" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Saada
-      </Button>
-    </Form>
+      {shops.map((shop) => (
+        <div className="map-btn">
+          <Button
+            key={shop.name}
+            onClick={() =>
+              setCoordinates({ lngLat: [shop.lati, shop.long], zoom: 13 })
+            }
+            className="gold-btn"
+            variant="dark"
+          >
+            {shop.name}
+          </Button>
+        </div>
+      ))}
+
+      <Map mapCoordinaates={coordinaates} />
+
+      <div className="footer">
+        <Footer />
+      </div>
+    </div>
   );
 };
